@@ -15,4 +15,4 @@ repo=$(basename $(dirname $(readlink -f $0)))
 )
 
 # TODO: lookup roles per host and run them all:
-ssh $user@$host "cd /tmp/$repo && sh roles/development.sh"
+ssh $user@$host "cd /tmp/$repo && ./roles/development.sh"
