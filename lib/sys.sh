@@ -19,13 +19,15 @@ result() {
 }
 
 pkg() {
+  local err
   for p do
     case $os in
       alpine)
         apk info --quiet --installed $p || {
           printf 'pkg %s' $p
-          apk add --quiet $p
+          err=$(apk add --quiet $p 2>&1)
           result $?
+          [ -z "$err" ] || printf '%s\n' "$err" | sed 's/^/  /'
         }
         ;;
     esac
