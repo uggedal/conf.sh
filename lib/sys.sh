@@ -18,13 +18,17 @@ result() {
   printf '\e[0m\n'
 }
 
+name() {
+  printf '%s \e[33m%s\e[0m' $1 $2
+}
+
 pkg() {
   local err
   for p do
     case $os in
       alpine)
         apk info --quiet --installed $p || {
-          printf 'pkg %s' $p
+          name pkg $p
           err=$(apk add --quiet $p 2>&1)
           result $?
           [ -z "$err" ] || printf '%s\n' "$err" | sed 's/^/  /'
