@@ -16,6 +16,5 @@ pkg() {
         apk info --installed $p >/dev/null || apk add $p
         ;;
     esac
-    :
   done
 }
