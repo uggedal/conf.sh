@@ -13,7 +13,7 @@ pkg() {
   for p do
     case $os in
       alpine)
-        apk info -e $p || apk add $p
+        apk info --installed $p || apk add $p
         ;;
     esac
     :
