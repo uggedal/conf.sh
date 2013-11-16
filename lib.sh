@@ -8,3 +8,14 @@ _os() {
 }
 
 os=$(_os alpine arch)
+
+pkg() {
+  for p do
+    case $os in
+      alpine)
+        apk info -e $p || apk add $p
+        ;;
+    esac
+    :
+  done
+}
