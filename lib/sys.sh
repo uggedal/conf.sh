@@ -11,10 +11,11 @@ os=$(_os alpine arch)
 
 result() {
   if [ $1 -eq 0 ]; then
-    printf ' ✓\n'
+    printf ' \e[32m✓'
   else
-    printf ' ✗\n'
+    printf ' \e[31m✗'
   fi
+  printf '\e[0m\n'
 }
 
 pkg() {
