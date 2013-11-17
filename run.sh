@@ -1,12 +1,13 @@
 #!/bin/sh
 
-[ $# -eq 1 ] || {
-  printf '%s: <host>\n' $0
+[ $# -eq 2 ] || {
+  printf '%s: <host> <environment>\n' $0
   exit 64
 }
 
 user=${user:-root}
 host=$1
+environment=$(cat $2)
 repo=$(basename $(dirname $(readlink -f $0)))
 
 (
@@ -15,4 +16,4 @@ repo=$(basename $(dirname $(readlink -f $0)))
 )
 
 # TODO: lookup roles per host and run them all:
-ssh $user@$host "cd /tmp/$repo && ./roles/development.sh"
+ssh $user@$host "$environment && cd /tmp/$repo && ./roles/development.sh"
