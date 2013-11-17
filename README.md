@@ -17,7 +17,7 @@ name='Your name'
 email=you@name.com
 EOF
 
-./run.sh myhost mybox.sh
+./run.sh myhost myhost.sh
 ```
 
 Related
