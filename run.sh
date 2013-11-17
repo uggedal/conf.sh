@@ -7,13 +7,19 @@
 
 user=${user:-root}
 host=$1
-environment=$(cat $2)
+environment=$(readlink -f $2)
 repo=$(basename $(dirname $(readlink -f $0)))
+
+roles() {
+  . $environment
+  for role in $roles; do
+    printf '&& ./roles/%s.sh' $role
+  done
+}
 
 (
   cd ..
   tar cpf - $repo | ssh $user@$host "tar xpf - -C /tmp"
 )
 
-# TODO: lookup roles per host and run them all:
-ssh $user@$host "$environment && cd /tmp/$repo && ./roles/development.sh"
+ssh $user@$host "$(cat $environment) && cd /tmp/$repo $(roles)"
