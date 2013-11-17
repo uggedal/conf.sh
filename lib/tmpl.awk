@@ -5,7 +5,7 @@
 }
 
 function substitute(raw) {
-  if (match(raw, /{{([^}]*)}}/)) {
+  if (match(raw, /\{\{([^}]*)\}\}/)) {
     tag = substr(raw, RSTART, RLENGTH)
     key = substr(raw, RSTART+2, RLENGTH-4)
     gsub(tag, ENVIRON[key], raw)
