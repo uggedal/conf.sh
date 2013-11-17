@@ -4,4 +4,4 @@
 
 pkg alpine-sdk
 
-./lib/tmpl.awk templates/abuild.conf > /etc/abuild.conf
+tmpl templates/abuild.conf > /etc/abuild.conf

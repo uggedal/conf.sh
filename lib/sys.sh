@@ -37,3 +37,7 @@ pkg() {
     esac
   done
 }
+
+tmpl() {
+  ./lib/tmpl.awk $1
+}
