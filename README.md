@@ -24,6 +24,7 @@ Related
 -------
 
 * [Configuration management for POSIX-based systems][posix_cm]
+* [cdist][]
 
 License
 -------
@@ -32,3 +33,4 @@ MIT
 
 [alpine]: http://alpinelinux.org/
 [posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
+[cdist]: http://www.nico.schottelius.org/software/cdist/
