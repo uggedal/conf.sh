@@ -11,7 +11,7 @@ Usage
 -----
 
 ```sh
-cat < EOF > myhost.sh
+cat <<EOF > myhost.sh
 roles='development packaging'
 name='Your name'
 email=you@name.com
