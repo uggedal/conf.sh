@@ -18,6 +18,10 @@ result() {
   printf '\e[0m\n'
 }
 
+verbose() {
+  printf '%s\n' "$1" | sed 's/^/  /'
+}
+
 name() {
   printf '%s \e[33m%s\e[0m' $1 $2
 }
@@ -31,7 +35,7 @@ pkg() {
           name pkg $p
           err=$(apk add --quiet $p 2>&1)
           result $?
-          [ -z "$err" ] || printf '%s\n' "$err" | sed 's/^/  /'
+          [ -z "$err" ] || verbose "$err"
         }
         ;;
     esac
@@ -39,5 +43,21 @@ pkg() {
 }
 
 tmpl() {
-  ./lib/tmpl.awk $1
+  local src=$1
+  local dest=$2
+  local tmp=$(mktemp)
+  local diff
+
+  trap 'rm $tmp' 1 2 3 15
+
+  ./lib/tmpl.awk $src > $tmp
+  diff=$(diff $tmp $dest)
+
+  [ $? -eq 0 ] && return
+
+  name tmpl $dest
+
+  cat $tmp > $dest
+  result $?
+  verbose "$diff"
 }
