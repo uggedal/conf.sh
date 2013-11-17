@@ -17,9 +17,13 @@ roles() {
   done
 }
 
+exported() {
+  sed -e '/^$/d' -e 's/^/export /' < $env
+}
+
 (
   cd ..
   tar cpf - $repo | ssh $user@$host "tar xpf - -C /tmp"
 )
 
-ssh $user@$host "$(cat $env) && cd /tmp/$repo $(roles)"
+ssh $user@$host "$(exported) && cd /tmp/$repo $(roles)"
