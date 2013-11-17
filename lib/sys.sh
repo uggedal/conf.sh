@@ -1,14 +1,3 @@
-_os() {
-  for name do
-    if [ -f /etc/${name}-release ]; then
-      printf '%s' $name
-      break
-    fi
-  done
-}
-
-os=$(_os alpine arch)
-
 result() {
   if [ $1 -eq 0 ]; then
     printf ' \e[32m✓'
@@ -29,16 +18,12 @@ name() {
 pkg() {
   local err
   for p do
-    case $os in
-      alpine)
-        apk info --quiet --installed $p || {
-          name pkg $p
-          err=$(apk add --quiet $p 2>&1)
-          result $?
-          [ -z "$err" ] || verbose "$err"
-        }
-        ;;
-    esac
+    apk info --quiet --installed $p || {
+      name pkg $p
+      err=$(apk add --quiet $p 2>&1)
+      result $?
+      [ -z "$err" ] || verbose "$err"
+    }
   done
 }
 
