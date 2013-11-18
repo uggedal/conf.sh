@@ -19,7 +19,7 @@ roles() {
 }
 
 exported() {
-  sed -e '/^$/d' -e 's/^/export /' < $env
+  sed -e '/^[^_]/d' -e 's/^/export /' < $env
 }
 
 (
