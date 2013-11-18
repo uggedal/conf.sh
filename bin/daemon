@@ -1,0 +1,17 @@
+#!/bin/sh
+
+restart() {
+  local err
+  case $(os) in
+    alpine)
+      progress start daemon $1
+      err=$(/etc/init.d/$1 -q restart 2>&1)
+      progress finish $?
+      [ -z "$err" ] || progress result "$err"
+      ;;
+  esac
+}
+
+action=$1
+shift
+$action "$@"
