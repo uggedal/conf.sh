@@ -10,7 +10,7 @@ _tmpl() {
 
   trap 'rm $tmp' 1 2 3 15
 
-  $(dirname $0)/../lib/tmpl.awk $src > $tmp
+  tmpl.awk $src > $tmp
   diff=$(diff $dest $tmp)
 
   [ $? -eq 0 ] && return
