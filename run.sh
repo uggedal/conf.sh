@@ -38,4 +38,4 @@ exported() {
   tar cpf - $repo | ssh $user@$host "tar xpf - -C $(dirname $dest)"
 )
 
-ssh $user@$host "PATH=$dest/bin:\"\$PATH\" $(exported)$(roles)"
+ssh $user@$host PATH=$dest/bin:'"$PATH"'" $(exported)$(roles)"
