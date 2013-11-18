@@ -1,23 +1,20 @@
 #!/bin/sh
 
-[ $# -eq 1 ] || {
-  printf '%s: <env>\n' $0
+die() {
+  local pattern="$1"
+  shift
+  printf "$pattern" "$@"
   exit 64
 }
+
+[ $# -eq 1 ] || die '%s: <env>\n' $0
 
 env=$(readlink -f $1)
 
 . $env
 
-[ -n "$host" ] || {
-  printf 'no host in %s\n' $env
-  exit 64
-}
-
-[ -n "$roles" ] || {
-  printf 'no roles in %s\n' $env
-  exit 64
-}
+[ -n "$host" ] || die 'no host in %s\n' $env
+[ -n "$roles" ] || die 'no roles in %s\n' $env
 
 user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $0)))
