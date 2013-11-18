@@ -4,20 +4,24 @@ _tmpl() {
   local src=$(dirname $0)/../templates/$1
   local dest=$2
   local tmp=$(mktemp)
-  local diff
+  local diff code
 
   trap 'rm $tmp' 1 2 3 15
 
   tmpl.awk $src > $tmp
   diff=$(diff $dest $tmp)
 
-  [ $? -eq 0 ] && return
+  [ $? -eq 0 ] && exit 0
 
   progress start tmpl $dest
 
   cat $tmp > $dest
+  code=$?
   progress finish $?
   progress result "$diff"
+
+  [ $code -ne 0 ] && exit $code
+  exit 100
 }
 
 _tmpl "$@"
