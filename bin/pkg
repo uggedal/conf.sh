@@ -1,17 +1,15 @@
 #!/bin/sh
 
-. $(inc progress)
-
 _pkg() {
   local err
   for p do
     case $(os) in
       alpine)
         apk info --quiet --installed $p || {
-          name pkg $p
+          progress start pkg $p
           err=$(apk add --quiet $p 2>&1)
-          result $?
-          [ -z "$err" ] || verbose "$err"
+          progress finish $?
+          [ -z "$err" ] || progress result "$err"
         }
         ;;
     esac

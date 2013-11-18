@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. $(inc progress)
-
 _tmpl() {
   local src=$(dirname $0)/../$1
   local dest=$2
@@ -15,11 +13,11 @@ _tmpl() {
 
   [ $? -eq 0 ] && return
 
-  name tmpl $dest
+  progress start tmpl $dest
 
   cat $tmp > $dest
-  result $?
-  verbose "$diff"
+  progress finish $?
+  progress result "$diff"
 }
 
 _tmpl "$@"

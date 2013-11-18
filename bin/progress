@@ -1,4 +1,10 @@
-result() {
+#!/bin/sh
+
+start() {
+  printf '%s \e[33m%s\e[0m' $1 $2
+}
+
+finish() {
   if [ $1 -eq 0 ]; then
     printf ' \e[32m✓'
   else
@@ -7,10 +13,10 @@ result() {
   printf '\e[0m\n'
 }
 
-verbose() {
+result() {
   printf '%s\n' "$1" | sed 's/^/  /'
 }
 
-name() {
-  printf '%s \e[33m%s\e[0m' $1 $2
-}
+action=$1
+shift
+$action "$@"
