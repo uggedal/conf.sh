@@ -14,6 +14,11 @@ env=$(readlink -f $1)
   exit 64
 }
 
+[ -n "$roles" ] || {
+  printf 'no roles in %s\n' $env
+  exit 64
+}
+
 user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $0)))
 dest=/tmp/$repo
