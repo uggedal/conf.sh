@@ -1,6 +1,14 @@
 #!/bin/sh
 
-pkg openssh && \
-tmpl sshd_config /etc/ssh/sshd_config
+set -e
 
-[ $? -eq 100 ] && daemon restart sshd
+pkg openssh
+
+# TODO: this is ugly:
+set +e
+tmpl sshd_config /etc/ssh/sshd_config
+set -e
+
+if  [ $? -eq 100 ]; then
+  daemon restart sshd
+fi
