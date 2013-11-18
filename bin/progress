@@ -1,7 +1,7 @@
 #!/bin/sh
 
 start() {
-  printf '%-4s \e[33m%s\e[0m ' $1 $2
+  printf '%-6s \e[33m%s\e[0m ' $1 $2
 }
 
 finish() {
