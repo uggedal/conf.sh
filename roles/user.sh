@@ -7,6 +7,8 @@ for g in $_user_groups; do
   id -nG $_user_name | grep -q $g || addgroup $_user_name $g
 done
 
+grep ^$_user_name:!: /etc/shadow >/dev/null && passwd -u $_user_name
+
 ssh_dir=/home/$_user_name/.ssh
 ssh_auth_file=$ssh_dir/authorized_keys
 inode dir $ssh_dir 700 $_user_name $_user_group
