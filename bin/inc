@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf '%s/../lib/%s.inc' $(dirname $0) $1

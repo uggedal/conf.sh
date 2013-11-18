@@ -1,0 +1,25 @@
+#!/bin/sh
+
+. $(inc progress)
+
+_tmpl() {
+  local src=$(dirname $0)/../$1
+  local dest=$2
+  local tmp=$(mktemp)
+  local diff
+
+  trap 'rm $tmp' 1 2 3 15
+
+  $(dirname $0)/../lib/tmpl.awk $src > $tmp
+  diff=$(diff $dest $tmp)
+
+  [ $? -eq 0 ] && return
+
+  name tmpl $dest
+
+  cat $tmp > $dest
+  result $?
+  verbose "$diff"
+}
+
+_tmpl "$@"

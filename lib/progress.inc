@@ -1,0 +1,16 @@
+result() {
+  if [ $1 -eq 0 ]; then
+    printf ' \e[32m✓'
+  else
+    printf ' \e[31m✗'
+  fi
+  printf '\e[0m\n'
+}
+
+verbose() {
+  printf '%s\n' "$1" | sed 's/^/  /'
+}
+
+name() {
+  printf '%s \e[33m%s\e[0m' $1 $2
+}
