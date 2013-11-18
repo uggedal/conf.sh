@@ -4,4 +4,4 @@ set -e
 
 pkg sudo
 
-tmpl templates/sudoers /etc/sudoers
+tmpl sudoers /etc/sudoers

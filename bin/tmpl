@@ -1,7 +1,7 @@
 #!/bin/sh
 
 _tmpl() {
-  local src=$(dirname $0)/../$1
+  local src=$(dirname $0)/../templates/$1
   local dest=$2
   local tmp=$(mktemp)
   local diff
