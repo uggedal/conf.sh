@@ -18,21 +18,38 @@ env=$(readlink -f $1)
 
 user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $0)))
+run=run.sh
 dest=/tmp/$repo
 
-roles() {
+mkrun() {
+  local exported rolescripts
+
+  exported=$(grep '^_' < $env | sed 's/^/export /')
   for role in $roles; do
-    printf ' && %s/roles/%s.sh' $dest $role
+    rolescripts="${rolescripts}
+${dest}/roles/${role}.sh"
   done
+
+  cat <<EOF > $run
+#!/bin/sh
+
+set -e
+
+PATH=$dest/bin:"\$PATH"
+
+$exported
+$rolescripts
+EOF
+chmod 700 $run
 }
 
-exported() {
-  sed -e '/^[^_]/d' -e 's/^/export /' < $env
-}
+mkrun
 
 (
   cd ..
   tar cpf - $repo | ssh $user@$host "tar xpf - -C $(dirname $dest)"
 )
 
-ssh $user@$host PATH=$dest/bin:'"$PATH"'" $(exported)$(roles)"
+ssh $user@$host $dest/$run
+
+rm $run
