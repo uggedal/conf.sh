@@ -6,8 +6,7 @@ _tmpl() {
   local tmp=$(mktemp)
   local diff code
 
-  # TODO: not working:
-  trap 'rm $tmp' 1 2 3 15
+  trap "rm $tmp" EXIT TERM INT
 
   tmpl.awk $src > $tmp
   diff=$(diff $dest $tmp)
