@@ -2,6 +2,7 @@
 
 start() {
   printf '%-6s \e[33m%s\e[0m ' $1 $2
+  [ $# -eq 3 ] && printf '%s ' $3
 }
 
 finish() {

@@ -38,7 +38,7 @@ _change_state() {
 
   case $(os) in
     alpine)
-      progress start daemon $name
+      progress start daemon $name $state
       err=$(/etc/init.d/$name -q $state 2>&1)
       code=$?
       progress finish $code
@@ -63,7 +63,7 @@ _enable() {
 
   case $(os) in
     alpine)
-      progress start daemon $name
+      progress start daemon $name enable
       err=$(rc-update add $name default 2>&1)
       code=$?
       progress finish $code
