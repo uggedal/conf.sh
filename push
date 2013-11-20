@@ -24,13 +24,7 @@ parse() {
 }
 
 mkrun() {
-  local exported rolescripts
-
-  exported=$(grep '^_' < $env | sed 's/^/export /')
-  for role in $roles; do
-    rolescripts="${rolescripts}
-${dest}/roles/${role}.sh"
-  done
+  local role
 
   cat <<EOF > $run
 #!/bin/sh
@@ -39,9 +33,14 @@ set -e
 
 PATH=$dest/bin:"\$PATH"
 
-$exported
+$(grep '^_' < $env | sed 's/^/export /')
 $rolescripts
 EOF
+
+  for role in $roles; do
+    printf '%s/roles/%s.sh\n' $dest $role >> $run
+  done
+
   chmod 700 $run
 }
 
