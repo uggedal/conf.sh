@@ -1,25 +1,27 @@
 #!/bin/sh
 
+argv=$#
+self=$0
+env=
+user=${user:-root}
+repo=$(basename $(dirname $(readlink -f $self)))
+run=run.sh
+dest=/tmp/$repo
+
 die() {
-  local pattern="$1"
-  shift
-  printf "$pattern" "$@"
+  printf "$@"
   exit 64
 }
 
-[ $# -eq 1 ] || die '%s: <env>\n' $0
+parse() {
+  [ $argv -eq 1 ] || die '%s: <env>\n' $self
 
-env=$(readlink -f $1)
+  env=$(readlink -f $1)
+  . $env
 
-. $env
-
-[ -n "$host" ] || die 'no host in %s\n' $env
-[ -n "$roles" ] || die 'no roles in %s\n' $env
-
-user=${user:-root}
-repo=$(basename $(dirname $(readlink -f $0)))
-run=run.sh
-dest=/tmp/$repo
+  [ -n "$host" ] || die 'no host in %s\n' $env
+  [ -n "$roles" ] || die 'no roles in %s\n' $env
+}
 
 mkrun() {
   local exported rolescripts
@@ -43,13 +45,16 @@ EOF
 chmod 700 $run
 }
 
-mkrun
+sync() {
+  (
+    cd ..
+    tar cpf - $repo | ssh $user@$host "tar xpf - -C $(dirname $dest)"
+  )
+}
 
-(
-  cd ..
-  tar cpf - $repo | ssh $user@$host "tar xpf - -C $(dirname $dest)"
-)
+execrun() {
+  ssh $user@$host $dest/$run
+}
 
-ssh $user@$host $dest/$run
-
-rm $run
+parse "$@" && mkrun && sync && execrun
+rm -f $run
