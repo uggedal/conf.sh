@@ -42,7 +42,7 @@ PATH=$dest/bin:"\$PATH"
 $exported
 $rolescripts
 EOF
-chmod 700 $run
+  chmod 700 $run
 }
 
 sync() {
