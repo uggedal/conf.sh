@@ -1,17 +1,85 @@
 #!/bin/sh
 
-restart() {
-  local err
+_started() {
+  local name=$1
+
   case $(os) in
     alpine)
-      progress start daemon $1
-      err=$(/etc/init.d/$1 -q restart 2>&1)
-      progress finish $?
-      [ -z "$err" ] || progress result "$err"
+      /etc/init.d/$name status >/dev/null
+      return $?
+      ;;
+  esac
+}
+
+_stopped() {
+  local name=$1
+
+  case $(os) in
+    alpine)
+      /etc/init.d/$name status >/dev/null
+      return [ $? -eq 3 ]
+      ;;
+  esac
+}
+
+_change_state() {
+  local state=$1
+  local name=$2
+  local err code
+
+  case $state in
+    start)
+      _started $name && return
+      ;;
+    stop)
+      _stopped $name && return
+      ;;
+  esac
+
+  case $(os) in
+    alpine)
+      progress start daemon $name
+      err=$(/etc/init.d/$name -q $state 2>&1)
+      code=$?
+      progress finish $code
+      [ -z "$err" -a $code -ne 0 ] || progress result "$err"
+      ;;
+  esac
+}
+
+_enabled() {
+  case $(os) in
+    alpine)
+      rc-update show | sed 's/ //g' | cut -d'|' -f1
+      ;;
+  esac
+}
+
+_enable() {
+  local name=$1
+  local err code
+
+  _enabled | grep "^$name\$" >/dev/null && return
+
+  case $(os) in
+    alpine)
+      progress start daemon $name
+      err=$(rc-update add $name default 2>&1)
+      code=$?
+      progress finish $code
+      [ -z "$err" -a $code -ne 0 ] || progress result "$err"
       ;;
   esac
 }
 
 action=$1
 shift
-$action "$@"
+
+case $action in
+  start|stop|restart)
+    _change_state $action "$@"
+    ;;
+  enable)
+    _enable "$@"
+    ;;
+esac
