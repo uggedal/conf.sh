@@ -140,4 +140,4 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 #	AllowTcpForwarding no
 #	ForceCommand cvs server
 
-AllowUsers {{_ssh_allow_users}}
+AllowUsers {{_sshd_allow_users}}
