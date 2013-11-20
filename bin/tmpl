@@ -3,6 +3,7 @@
 _tmpl() {
   local src=$(dirname $0)/../templates/$1
   local dest=$2
+  local handler=$3
   local tmp=$(mktemp)
   local diff code
 
@@ -17,11 +18,17 @@ _tmpl() {
 
   cat $tmp > $dest
   code=$?
-  progress finish $?
+
+  progress finish $code
+
+  [ $code -eq 0 ] || {
+    progress result "$diff"
+    exit $code
+  }
+
   progress result "$diff"
 
-  [ $code -ne 0 ] && exit $code
-  exit 100
+  [ -z "$handler" ] || notify $handler tmpl changed $dest
 }
 
 _tmpl "$@"
