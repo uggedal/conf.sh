@@ -2,5 +2,5 @@
 
 set -e
 
-pkg bash vim tmux git
+pkg bash vim tmux git less
 pkg htop lsof
