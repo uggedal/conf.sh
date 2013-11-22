@@ -9,7 +9,7 @@ run=run.sh
 dest=/tmp/$repo
 
 die() {
-  printf "$@"
+  printf "$@" >&2
   exit 64
 }
 
