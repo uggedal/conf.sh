@@ -2,10 +2,10 @@
 
 _os() {
   for name do
-    if [ -f /etc/${name}-release ]; then
+    [ -f /etc/${name}-release ] && {
       printf '%s' $name
       break
-    fi
+    }
   done
 }
 
