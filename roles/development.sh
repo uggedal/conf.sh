@@ -2,5 +2,5 @@
 
 set -e
 
-pkg bash vim tmux git less
+pkg bash vim tmux git mercurial less
 pkg htop lsof
