@@ -34,7 +34,6 @@ set -e
 PATH=$dest/bin:"\$PATH"
 
 $(grep '^_' < $env | sed 's/^/export /')
-$rolescripts
 EOF
 
   for role in $roles; do
