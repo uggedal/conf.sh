@@ -7,20 +7,6 @@ in POSIX shell.
 
 The configuration is specific for [Alpine Linux][alpine] systems.
 
-Usage
------
-
-```sh
-cat <<EOF > myhost.sh
-roles='development packaging'
-host=192.168.1.125
-name='Your name'
-email=you@name.com
-EOF
-
-./push myhost.sh
-```
-
 Related
 -------
 
