@@ -1,5 +1,3 @@
-#!/bin/sh
-
-set -e
-
-pkg irssi
+irc_role() {
+  pkg irssi
+}

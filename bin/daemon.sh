@@ -1,6 +1,4 @@
-#!/bin/sh
-
-_started() {
+_daemon_started() {
   local name=$1
 
   case $(os) in
@@ -11,7 +9,7 @@ _started() {
   esac
 }
 
-_stopped() {
+_daemon_stopped() {
   local name=$1
 
   case $(os) in
@@ -22,17 +20,17 @@ _stopped() {
   esac
 }
 
-_change_state() {
+_daemon_change_stage() {
   local state=$1
   local name=$2
   local err code
 
   case $state in
     start)
-      _started $name && return
+      _daemon_started $name && return
       ;;
     stop)
-      _stopped $name && return
+      _daemon_stopped $name && return
       ;;
   esac
 
@@ -42,12 +40,12 @@ _change_state() {
       err=$(/etc/init.d/$name -q $state 2>&1)
       code=$?
       progress finish $code
-      [ -z "$err" -a $code -ne 0 ] || progress result "$err"
+      [ -z "$err" -a $code -eq 0 ] || progress result "$err"
       ;;
   esac
 }
 
-_enabled() {
+_daemon_enabled() {
   case $(os) in
     alpine)
       rc-update show | sed 's/ //g' | cut -d'|' -f1
@@ -55,11 +53,11 @@ _enabled() {
   esac
 }
 
-_enable() {
+_daemon_enable() {
   local name=$1
   local err code
 
-  _enabled | grep "^$name\$" >/dev/null && return
+  _daemon_enabled | grep "^$name\$" >/dev/null && return
 
   case $(os) in
     alpine)
@@ -72,14 +70,16 @@ _enable() {
   esac
 }
 
-action=$1
-shift
+daemon() {
+  action=$1
+  shift
 
-case $action in
-  start|stop|restart)
-    _change_state $action "$@"
-    ;;
-  enable)
-    _enable "$@"
-    ;;
-esac
+  case $action in
+    start|stop|restart)
+      _daemon_change_stage $action "$@"
+      ;;
+    enable)
+      _daemon_enable "$@"
+      ;;
+  esac
+}

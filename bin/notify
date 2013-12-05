@@ -1,5 +1,0 @@
-#!/bin/sh
-
-handler=$(dirname $0)/../handlers/$1.sh
-shift
-$handler "$@"

@@ -1,7 +1,5 @@
-#!/bin/sh
+sudo_role() {
+  pkg sudo && \
 
-set -e
-
-pkg sudo
-
-tmpl sudoers /etc/sudoers
+  tmpl sudoers /etc/sudoers
+}

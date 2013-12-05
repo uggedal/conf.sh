@@ -1,7 +1,5 @@
-#!/bin/sh
+ntpd_role() {
+  pkg openntpd && \
 
-set -e
-
-pkg openntpd
-
-tmpl ntpd.confd /etc/conf.d/ntpd ntpd
+  tmpl ntpd.confd /etc/conf.d/ntpd ntpd
+}

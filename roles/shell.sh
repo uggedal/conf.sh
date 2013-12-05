@@ -1,8 +1,6 @@
-#!/bin/sh
+shell_role() {
+  local dest=/etc/profile.d/vimode.sh
 
-set -e
-
-dest=/etc/profile.d/vimode.sh
-
-inode file $dest 644 root root
-tmpl vimode.sh $dest
+  inode file $dest 644 root root
+  tmpl vimode.sh $dest
+}

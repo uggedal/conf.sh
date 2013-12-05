@@ -1,7 +1,5 @@
-#!/bin/sh
+sshd_role() {
+  pkg openssh && \
 
-set -e
-
-pkg openssh
-
-tmpl sshd_config /etc/ssh/sshd_config sshd
+  tmpl sshd_config /etc/ssh/sshd_config sshd
+}

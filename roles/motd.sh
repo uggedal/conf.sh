@@ -1,3 +1,3 @@
-#!/bin/sh
-
-> /etc/motd
+motd_role() {
+  > /etc/motd
+}

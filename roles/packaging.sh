@@ -1,5 +1,3 @@
-#!/bin/sh
-
-set -e
-
-pkg alpine-sdk git-perl
+packaging_role() {
+  pkg alpine-sdk git-perl
+}

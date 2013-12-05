@@ -1,8 +1,8 @@
 #!/bin/sh
 
-argv=$#
 self=$0
 env=
+debug=
 user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $self)))
 run=run.sh
@@ -14,13 +14,15 @@ die() {
 }
 
 parse() {
-  [ $argv -eq 1 ] || die '%s: <env>\n' $self
+  [ $# -eq 1 -o $# -eq 2 ] || die '%s: <env> [--debug]\n' $self
 
   env=$(readlink -f $1)
   . $env
 
   [ -n "$host" ] || die 'no host in %s\n' $env
   [ -n "$roles" ] || die 'no roles in %s\n' $env
+
+  [ $# -ne 2 -o "$2" != '--debug' ] || debug='set -x'
 }
 
 mkrun() {
@@ -28,25 +30,23 @@ mkrun() {
 
   cat <<EOF > $run
 #!/bin/sh
-
-set -e
-
-PATH=$dest/bin:"\$PATH"
-
+$debug
 $(grep '^_' < $env | sed 's/^/export /')
 EOF
 
-  for role in $roles; do
-    printf '%s/roles/%s.sh\n' $dest $role >> $run
-  done
+  cat bin/*.sh >> $run
+  cat roles/*.sh >> $run
+  cat handlers/*.sh >> $run
 
+  printf '%s_role || exit 1\n' $roles >> $run
   chmod 700 $run
 }
 
 sync() {
   (
     cd ..
-    tar cpf - $repo | ssh $user@$host "tar xpf - -C $(dirname $dest)"
+    tar cpf - $repo/$run $repo/templates \
+      | ssh $user@$host "tar xpf - -C $(dirname $dest)"
   )
 }
 
