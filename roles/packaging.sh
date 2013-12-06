@@ -1,3 +1,3 @@
 packaging_role() {
-  pkg alpine-sdk git-perl
+  pkg alpine-sdk git-email
 }
