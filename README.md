@@ -14,7 +14,7 @@ First you need one or more env files providing at least the `host` and
 `roles` of a machine:
 
 ```sh
-EOF > myhost.sh
+cat <<EOF > myhost.sh
 host=192.168.1.125
 roles='ssh dns http'
 EOF
