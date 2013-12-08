@@ -20,6 +20,12 @@ roles='ssh dns http'
 EOF
 ```
 
+Then you push your configuration with:
+
+```
+./push myhost.sh
+```
+
 Related
 -------
 
