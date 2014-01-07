@@ -50,7 +50,7 @@
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 # but this is overridden so installations will only check .ssh/authorized_keys
-AuthorizedKeysFile	.ssh/authorized_keys
+#AuthorizedKeysFile	.ssh/authorized_keys
 
 #AuthorizedPrincipalsFile none
 
@@ -93,7 +93,7 @@ PasswordAuthentication no
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
-#UsePAM no
+UsePAM yes
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
@@ -101,8 +101,8 @@ PasswordAuthentication no
 #X11Forwarding no
 #X11DisplayOffset 10
 #X11UseLocalhost yes
-#PrintMotd yes
-#PrintLastLog yes
+PrintMotd no
+PrintLastLog no
 #TCPKeepAlive yes
 #UseLogin no
 UsePrivilegeSeparation sandbox		# Default for new installations.
@@ -121,7 +121,7 @@ UseDNS no
 #Banner none
 
 # override default of no subsystems
-Subsystem	sftp	/usr/lib/ssh/sftp-server
+Subsystem	sftp	/usr/lib64/misc/sftp-server
 
 # the following are HPN related configuration options
 # tcp receive buffer polling. disable in non autotuning kernels
@@ -139,5 +139,8 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 #	X11Forwarding no
 #	AllowTcpForwarding no
 #	ForceCommand cvs server
+
+# Allow client to pass locale environment variables #367017
+AcceptEnv LANG LC_*
 
 AllowUsers {{_sshd_allow_users}}
