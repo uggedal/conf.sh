@@ -1,9 +1,9 @@
 _progress_start() {
   local action=$1
-  local object=$2
+  local object="$2"
   local state=$3
 
-  printf '%-6s \e[33m%s\e[0m ' $action $object
+  printf '%-6s \e[33m%s\e[0m ' $action "$object"
   [ $# -eq 3 ] && printf '%s ' $state || true
 }
 
