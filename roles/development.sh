@@ -1,6 +1,4 @@
 development_role() {
-  pkg bash bash-completion vim less \
-      tmux tmux-bash-completion \
-      git git-perl git-bash-completion hub ghi mercurial \
-      htop lsof
+  pkg use dev-vcs/git -gpg -webdav
+  pkg world app-editors/vim app-misc/tmux dev-vcs/git
 }
