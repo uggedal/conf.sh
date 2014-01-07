@@ -1,23 +1,14 @@
 _daemon_started() {
   local name=$1
 
-  case $(os) in
-    alpine)
-      /etc/init.d/$name status >/dev/null
-      return $?
-      ;;
-  esac
+  /etc/init.d/$name status >/dev/null
 }
 
 _daemon_stopped() {
   local name=$1
 
-  case $(os) in
-    alpine)
-      /etc/init.d/$name status >/dev/null
-      return [ $? -eq 3 ]
-      ;;
-  esac
+  /etc/init.d/$name status >/dev/null
+  [ $? -eq 3 ]
 }
 
 _daemon_change_stage() {
@@ -34,23 +25,15 @@ _daemon_change_stage() {
       ;;
   esac
 
-  case $(os) in
-    alpine)
-      progress start daemon $name $state
-      err=$(/etc/init.d/$name -q $state 2>&1)
-      code=$?
-      progress finish $code
-      [ -z "$err" -a $code -eq 0 ] || progress result "$err"
-      ;;
-  esac
+  progress start daemon $name $state
+  err=$(/etc/init.d/$name -q $state 2>&1)
+  code=$?
+  progress finish $code
+  [ -z "$err" -a $code -eq 0 ] || progress result "$err"
 }
 
 _daemon_enabled() {
-  case $(os) in
-    alpine)
-      rc-update show | sed 's/ //g' | cut -d'|' -f1
-      ;;
-  esac
+  rc-update show | sed 's/ //g' | cut -d'|' -f1
 }
 
 _daemon_enable() {
@@ -59,15 +42,11 @@ _daemon_enable() {
 
   _daemon_enabled | grep "^$name\$" >/dev/null && return
 
-  case $(os) in
-    alpine)
-      progress start daemon $name enable
-      err=$(rc-update add $name default 2>&1)
-      code=$?
-      progress finish $code
-      [ -z "$err" -a $code -ne 0 ] || progress result "$err"
-      ;;
-  esac
+  progress start daemon $name enable
+  err=$(rc-update add $name default 2>&1)
+  code=$?
+  progress finish $code
+  [ -z "$err" -a $code -ne 0 ] || progress result "$err"
 }
 
 daemon() {
