@@ -2,10 +2,14 @@ conf
 ====
 
 Zero dependency configuration management for
-[uggedal.com](http://uggedal.com) machines
-in POSIX shell.
+[Gentoo Linux][gentoo] machines in POSIX shell.
 
-The configuration is specific for [Alpine Linux][alpine] systems.
+Design
+------
+
+* No emerges. Updates world file, and different settings in
+  `/etc/portage/*`. Emerge is executed interactively.
+* Maybe binhost at some point.
 
 Usage
 -----
@@ -37,6 +41,6 @@ License
 
 MIT
 
-[alpine]: http://alpinelinux.org/
+[gentoo]: http://gentoo.org/
 [posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
 [cdist]: http://www.nico.schottelius.org/software/cdist/
