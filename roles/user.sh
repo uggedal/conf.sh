@@ -9,11 +9,6 @@ _add_groups() {
   done
 }
 
-_unlock_user() {
-  ! grep ^$_user_name:!: /etc/shadow >/dev/null || \
-    passwd -u $_user_name
-}
-
 _ssh_auth() {
   local ssh_dir=/home/$_user_name/.ssh
   local ssh_auth_file=$ssh_dir/authorized_keys
@@ -39,5 +34,5 @@ _dotfiles() {
 }
 
 user_role() {
-  _add_user && _add_groups && _unlock_user && _ssh_auth && _dotfiles
+  _add_user && _add_groups && _ssh_auth && _dotfiles
 }
