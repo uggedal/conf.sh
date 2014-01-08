@@ -1,11 +1,11 @@
 _add_user() {
   id $_user_name >/dev/null 2>&1 || \
-    adduser -D -s $_user_shell -G $_user_group $_user_name
+    useradd -s $_user_shell -g $_user_group $_user_name
 }
 
 _add_groups() {
   for g in $_user_groups; do
-    id -nG $_user_name | grep -q $g || addgroup $_user_name $g || return 1
+    id -nG $_user_name | grep -q $g || usermod -a -G $g $_user_name || return 1
   done
 }
 
