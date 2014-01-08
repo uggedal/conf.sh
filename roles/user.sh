@@ -25,7 +25,7 @@ _dotfiles() {
   local home_dir=/home/$_user_name
 
   [ -d $home_dir/.git ] || \
-    sudo -u $_user_name sh -c "cd $home_dir && git init" || \
+    su -l $_user_name -c "cd $home_dir && git init" || \
     return 1
 
   inode dir $home_dir/.git 755 $_user_name $_user_group && \
