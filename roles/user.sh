@@ -1,6 +1,6 @@
 _add_user() {
   id $_user_name >/dev/null 2>&1 || \
-    useradd -s $_user_shell -g $_user_group $_user_name
+    useradd -m -s $_user_shell -g $_user_group $_user_name
 }
 
 _add_groups() {
