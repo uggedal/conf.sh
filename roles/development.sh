@@ -8,5 +8,6 @@ development_role() {
     dev-vcs/git \
     dev-vcs/hub \
     app-shells/bash-completion \
-    sys-process/htop
+    sys-process/htop \
+    sys-process/lsof
 }
