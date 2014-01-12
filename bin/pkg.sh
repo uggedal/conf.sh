@@ -37,6 +37,17 @@ _pkg_use() {
   }
 }
 
+_pkg_select() {
+  local module=$1
+  local choice=$2
+
+  eselect $module show | tail -n1 | sed 's/^ *//' | grep -q "^$choice\$" || {
+    progress start pkg "$module $choice" select
+    eselect $module set $choice >/dev/null
+    progress finish $?
+  }
+}
+
 pkg() {
   action=$1
   shift
