@@ -15,7 +15,7 @@ _pkg_accept() {
   line="$1 $2"
   local acceptfile=/etc/portage/package.accept_keywords
 
-  grep -q "^$line\$" $acceptfile || {
+  grep -q "^$line\$" $acceptfile 2>/dev/null|| {
     progress start pkg "$line" accept
     printf "$line\n" >> $acceptfile
     progress finish 0
@@ -30,7 +30,7 @@ _pkg_use() {
 
   local usefile=/etc/portage/package.use
 
-  grep -q "^$line\$" $usefile || {
+  grep -q "^$line\$" $usefile 2>/dev/null || {
     progress start pkg "$line" use
     printf "$line\n" >> $usefile
     progress finish 0
