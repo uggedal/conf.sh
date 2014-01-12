@@ -5,5 +5,6 @@ locale_handler() {
 
   [ "$action" = tmpl -a "$state" = changed ] && \
     [ "$object" = /etc/locale.gen ] && \
-    locale-gen >/dev/null
+    locale-gen >/dev/null && \
+    eselect locale set $_locale >/dev/null
 }
