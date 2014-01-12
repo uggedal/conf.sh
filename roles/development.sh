@@ -7,5 +7,6 @@ development_role() {
     app-misc/tmux \
     dev-vcs/git \
     dev-vcs/hub \
-    app-shells/bash-completion
+    app-shells/bash-completion \
+    sys-process/htop
 }
