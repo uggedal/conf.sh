@@ -1,3 +1,3 @@
 timezone_role() {
-  printf '%s\n' $_timezone > /etc/timezone
+  tmpl timezone /etc/timezone timezone
 }
