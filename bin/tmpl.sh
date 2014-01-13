@@ -25,7 +25,7 @@ function substitute(raw) {
   trap "rm $tmp" EXIT TERM INT
 
   awk "$tmpl_awk" $src > $tmp
-  diff=$(diff $dest $tmp)
+  diff=$(diff -u $dest $tmp)
 
   [ $? -eq 0 ] && return
 
