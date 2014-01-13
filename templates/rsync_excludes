@@ -10,6 +10,7 @@ app-office*/
 app-pda/
 app-xemacs/
 dev-ada/
+dev-cpp/
 dev-dotnet/
 dev-embedded/
 dev-games/
@@ -60,6 +61,7 @@ metadata/md5-cache/app-office*/
 metadata/md5-cache/app-pda/
 metadata/md5-cache/app-xemacs/
 metadata/md5-cache/dev-ada/
+metadata/md5-cache/dev-cpp/
 metadata/md5-cache/dev-dotnet/
 metadata/md5-cache/dev-embedded/
 metadata/md5-cache/dev-games/
