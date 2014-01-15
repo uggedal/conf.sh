@@ -22,21 +22,6 @@ _pkg_accept() {
   }
 }
 
-_pkg_use() {
-  local line
-  line="$1"
-  shift
-  line="$line $*"
-
-  local usefile=/etc/portage/package.use
-
-  grep -q "^$line\$" $usefile 2>/dev/null || {
-    progress start pkg "$line" use
-    printf "$line\n" >> $usefile
-    progress finish 0
-  }
-}
-
 _pkg_select() {
   local module=$1
   local choice=$2
