@@ -8,7 +8,8 @@ development_role() {
     dev-vcs/hub \
     app-shells/bash-completion \
     sys-process/htop \
-    sys-process/lsof
+    sys-process/lsof \
+    sys-devel/bc
 
   pkg select editor /usr/bin/vi
 }
