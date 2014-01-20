@@ -25,6 +25,14 @@ parse() {
   [ $# -ne 2 -o "$2" != '--debug' ] || debug='set -x'
 }
 
+remote() {
+  if [ $host = localhost ]; then
+    ssh $user@$host "$@"
+  else
+    "$@"
+  fi
+}
+
 mkrun() {
   local role
 
@@ -46,12 +54,12 @@ sync() {
   (
     cd ..
     tar cpf - $repo/$run $repo/templates \
-      | ssh $user@$host "tar xpf - -C $(dirname $dest)"
+      | remote "tar xpf - -C $(dirname $dest)"
   )
 }
 
 execrun() {
-  ssh $user@$host $dest/$run
+  remote $dest/$run
 }
 
 parse "$@" && mkrun && sync && execrun
