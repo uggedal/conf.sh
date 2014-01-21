@@ -47,7 +47,7 @@ EOF
 }
 
 sync() {
-  remote || return
+  remote || return 0
   (
     cd ..
     tar cpf - $repo/$run $repo/templates \
