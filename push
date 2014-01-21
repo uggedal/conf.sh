@@ -27,9 +27,9 @@ parse() {
 
 remote() {
   if [ $host = localhost ]; then
-    ssh $user@$host "$@"
-  else
     "$@"
+  else
+    ssh $user@$host "$@"
   fi
 }
 
