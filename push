@@ -26,7 +26,7 @@ parse() {
 }
 
 remote() {
-  [ $host = localhost ] || printf 'ssh %s@%s' $user $host
+  [ $host != localhost ]
 }
 
 mkrun() {
@@ -47,15 +47,20 @@ EOF
 }
 
 sync() {
+  remote || return
   (
     cd ..
     tar cpf - $repo/$run $repo/templates \
-      | $(remote) "tar xpf - -C $(dirname $dest)"
+      | ssh $user@$host "tar xpf - -C $(dirname $dest)"
   )
 }
 
 execrun() {
-  $(remote) $dest/$run
+  if remote; then
+    ssh $user@$host $dest/$run
+  else
+    ./$run
+  fi
 }
 
 parse "$@" && mkrun && sync && execrun
