@@ -7,9 +7,7 @@ Zero dependency configuration management for
 Design
 ------
 
-* No emerges. Updates world file, and different settings in
-  `/etc/portage/*`. Emerge is executed interactively.
-* Maybe binhost at some point.
+Merely updates world file so emerge can be executed interactively.
 
 Usage
 -----
