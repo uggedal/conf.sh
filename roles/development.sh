@@ -11,7 +11,7 @@ development_role() {
     sys-process/lsof \
     sys-devel/bc
 
-  for target in base coreutils gentoo ssh tmux git;do
+  for target in base coreutils man gentoo ssh tmux git;do
     [ -h /etc/bash_completion.d/$target ] \
       || eselect bashcomp enable --global $target
   done
