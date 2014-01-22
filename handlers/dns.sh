@@ -4,6 +4,7 @@ dns_handler() {
   local object=$3
 
   [ "$action" = tmpl -a "$state" = changed ] && \
-    [ "$object" = /etc/hostname ] && \
-    hostname -F $object
+    [ "$object" = /etc/conf.d/hostname ] && \
+    . $object
+    hostname $hostname
 }
