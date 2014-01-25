@@ -1,5 +1,6 @@
 development_role() {
   pkg accept =dev-vcs/hub-1.11.0 ~amd64
+  pkg accept =dev-util/clib-9999 ~amd64
 
   pkg world \
     app-editors/vim \
@@ -10,7 +11,8 @@ development_role() {
     sys-fs/inotify-tools \
     sys-process/htop \
     sys-process/lsof \
-    sys-devel/bc
+    sys-devel/bc \
+    dev-util/clib
 
   for target in base coreutils man gentoo ssh tmux git;do
     [ -h /etc/bash_completion.d/$target ] \
