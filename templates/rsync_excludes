@@ -1,6 +1,6 @@
 app-accessibility/
 app-antivirus/
-app-crd/
+app-cdr/
 app-dicts/
 app-doc/
 app-emacs/
@@ -56,7 +56,7 @@ x11-*/
 xfce-*/
 metadata/md5-cache/app-accessibility/
 metadata/md5-cache/app-antivirus/
-metadata/md5-cache/app-crd/
+metadata/md5-cache/app-cdr/
 metadata/md5-cache/app-dicts/
 metadata/md5-cache/app-doc/
 metadata/md5-cache/app-emacs/
