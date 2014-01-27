@@ -4,6 +4,7 @@ app-crd/
 app-dicts/
 app-emacs/
 app-forensics/
+app-i18n/
 app-laptop/
 app-leechcraft/
 app-mobilephone/
@@ -58,6 +59,7 @@ metadata/md5-cache/app-crd/
 metadata/md5-cache/app-dicts/
 metadata/md5-cache/app-emacs/
 metadata/md5-cache/app-forensics/
+metadata/md5-cache/app-i18n/
 metadata/md5-cache/app-laptop/
 metadata/md5-cache/app-leechcraft/
 metadata/md5-cache/app-mobilephone/
