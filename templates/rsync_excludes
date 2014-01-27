@@ -49,6 +49,8 @@ sys-freebsd/
 sys-infiniband/
 www-apache/
 www-plugins/
++ x11-misc/
+x11-*/
 xfce-*/
 metadata/md5-cache/app-accessibility/
 metadata/md5-cache/app-antivirus/
@@ -101,4 +103,6 @@ metadata/md5-cache/sys-freebsd/
 metadata/md5-cache/sys-infiniband/
 metadata/md5-cache/www-apache/
 metadata/md5-cache/www-plugins/
++ metadata/md5-cache/x11-misc/
+metadata/md5-cache/x11-*/
 metadata/md5-cache/xfce-*/
