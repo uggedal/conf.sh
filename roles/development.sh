@@ -9,6 +9,7 @@ development_role() {
     dev-vcs/hub \
     app-shells/bash-completion \
     sys-fs/inotify-tools \
+    sys-fs/ncdu \
     sys-process/htop \
     sys-process/lsof \
     sys-devel/bc \
