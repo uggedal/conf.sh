@@ -43,7 +43,7 @@ net-nntp/
 net-print/
 net-voip/
 net-zope/
-razorqa-base/
+razorqt-base/
 rox-*/
 sci-*/
 sec-policy/
@@ -99,7 +99,7 @@ metadata/md5-cache/net-nntp/
 metadata/md5-cache/net-print/
 metadata/md5-cache/net-voip/
 metadata/md5-cache/net-zope/
-metadata/md5-cache/razorqa-base/
+metadata/md5-cache/razorqt-base/
 metadata/md5-cache/rox-*/
 metadata/md5-cache/sci-*/
 metadata/md5-cache/sec-policy/
