@@ -31,8 +31,7 @@ gpe-*/
 java-virtuals/
 kde-*/
 lxde-base/
-media-radio/
-media-tv/
+media-*/
 net-dialup/
 net-ftp/
 net-im/
@@ -83,8 +82,7 @@ metadata/md5-cache/gpe-*/
 metadata/md5-cache/java-virtuals/
 metadata/md5-cache/kde-*/
 metadata/md5-cache/lxde-base/
-metadata/md5-cache/media-radio/
-metadata/md5-cache/media-tv/
+metadata/md5-cache/media-*/
 metadata/md5-cache/net-dialup/
 metadata/md5-cache/net-ftp/
 metadata/md5-cache/net-im/
