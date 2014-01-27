@@ -44,6 +44,7 @@ net-zope/
 razorqa-base/
 rox-*/
 sci-*/
+sec-policy/
 sys-freebsd/
 sys-infiniband/
 www-apache/
@@ -95,6 +96,7 @@ metadata/md5-cache/net-zope/
 metadata/md5-cache/razorqa-base/
 metadata/md5-cache/rox-*/
 metadata/md5-cache/sci-*/
+metadata/md5-cache/sec-policy/
 metadata/md5-cache/sys-freebsd/
 metadata/md5-cache/sys-infiniband/
 metadata/md5-cache/www-apache/
