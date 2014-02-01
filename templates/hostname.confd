@@ -1,1 +1,1 @@
-hostname="$_hostname_short"
+hostname="{{_hostname_short}}"
