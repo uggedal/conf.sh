@@ -16,6 +16,7 @@ development_role() {
     sys-process/lsof \
     sys-devel/bc \
     sys-devel/gdb \
+    dev-util/valgrind \
     dev-util/clib
 
   for target in base coreutils man gentoo ssh tmux git;do
