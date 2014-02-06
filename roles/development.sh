@@ -2,6 +2,7 @@ development_role() {
   pkg accept =dev-vcs/hub-1.11.0 ~amd64
   pkg accept =dev-util/ghi-0.9.1 ~amd64
   pkg accept =dev-util/clib-9999 ~amd64
+  pkg accept =dev-util/cloc-1.60 ~amd64
 
   pkg world \
     app-editors/vim \
