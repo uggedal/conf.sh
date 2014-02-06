@@ -8,6 +8,7 @@ development_role() {
     app-editors/vim \
     app-misc/tmux \
     dev-vcs/git \
+    dev-vcs/tig \
     dev-vcs/hub \
     dev-util/ghi \
     app-shells/bash-completion \
