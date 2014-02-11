@@ -10,6 +10,12 @@ _pkg_world() {
   done
 }
 
+_pkg_exists() {
+  for p do
+    equery list $p >/dev/null 2>&1 || return 1
+  done
+}
+
 _pkg_accept() {
   local line
   line="$1 $2"
