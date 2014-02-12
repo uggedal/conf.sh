@@ -85,7 +85,7 @@ EOF
     printf '    index  index.html;\n' >> $template
 
     [ "$autoindex" = true ] && \
-      printf '    autoindex on;\n' >> $template
+      printf '    fancyindex on;\n' >> $template
   else
     printf '    try_files $uri %s;\n' $upstream_name >> $template
   fi
