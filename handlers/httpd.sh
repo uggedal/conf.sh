@@ -4,6 +4,6 @@ httpd_handler() {
   local object=$3
 
   [ "$action" = tmpl -a "$state" = changed ] && \
-    [ "$object" = /etc/nginx/nginx.conf ] && \
+    [ ! "${object##/etc/nginx/*}" ] && \
     /etc/init.d/nginx reload >/dev/null
 }
