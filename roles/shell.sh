@@ -1,9 +1,7 @@
 shell_role() {
-  pkg world app-shells/dash
-
-  [ -x /bin/dash ] && \
-    [ /bin/dash != "$(readlink -f /bin/sh)" ] && \
-    ln -sf /bin/dash /bin/sh
+  [ -x /bin/bb ] && \
+    [ /bin/bb != "$(readlink -f /bin/sh)" ] && \
+    ln -sf /bin/bb /bin/sh
 
   tmpl inputrc /etc/inputrc
 }
