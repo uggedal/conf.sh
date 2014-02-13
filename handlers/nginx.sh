@@ -1,4 +1,4 @@
-nginx() {
+nginx_handler() {
   local action=$1
   local state=$2
   local object=$3
