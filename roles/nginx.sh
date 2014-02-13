@@ -90,7 +90,7 @@ EOF
     fancyindex_exact_size off;
 EOF
   else
-    printf '    try_files $uri %s;\n' $upstream_name >> $template
+    printf '    try_files $uri @%s;\n' $upstream_name >> $template
   fi
 
   printf '  }\n' >> $template
