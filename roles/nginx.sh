@@ -117,16 +117,16 @@ EOF
 
   printf '}\n' >> $template
 
-  tmpl $name $conf httpd
+  tmpl $name $conf nginx
 }
 
-httpd_role() {
+nginx_role() {
   pkg world www-servers/nginx && \
     pkg exists www-servers/nginx && \
     daemon enable nginx && \
     daemon start nginx && \
-    tmpl nginx.mime /etc/nginx/mime.types httpd && \
-    tmpl nginx.conf /etc/nginx/nginx.conf httpd && \
+    tmpl nginx.mime /etc/nginx/mime.types nginx && \
+    tmpl nginx.conf /etc/nginx/nginx.conf nginx && \
     inode dir /etc/nginx/conf.d 755 root root
 
   for i in $(seq 1 9); do
