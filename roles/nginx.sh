@@ -40,7 +40,7 @@ EOF
 
   [ -z "$upstreams" ] || {
     printf 'upstream %s {\n' $upstream_name >> $template
-    printf '  server %s fail_timeout=0;\n' $upstream >> $template
+    printf '  server %s fail_timeout=0;\n' $upstreams >> $template
     printf '}\n' >> $template
   }
 
