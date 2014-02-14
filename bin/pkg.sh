@@ -12,7 +12,7 @@ _pkg_world() {
 
 _pkg_exists() {
   for p do
-    equery list $p >/dev/null 2>&1 || return 1
+    stat -t $p >/dev/null 2>&1 || return 1
   done
 }
 
