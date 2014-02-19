@@ -1,5 +1,6 @@
 _pkg_world() {
   local worldfile=/var/lib/portage/world
+  local exists
 
   for p do
     grep -q "^$p\$" $worldfile || {
@@ -8,11 +9,13 @@ _pkg_world() {
       progress finish 0
     }
   done
-}
 
-_pkg_exists() {
   for p do
-    stat -t $p >/dev/null 2>&1 || return 1
+    stat -t /var/db/pkg/$p-* >/dev/null 2>&1 || {
+      progress start pkg $p exists
+      progress finish 1
+      return 1
+    }
   done
 }
 
