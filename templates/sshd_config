@@ -123,3 +123,6 @@ Subsystem	sftp	/usr/lib64/misc/sftp-server
 AcceptEnv LANG LC_*
 
 AllowUsers {{_sshd_allow_users}}
+
+Match Address {{_sshd_allow_root_from}}
+  AllowUsers root {{_sshd_allow_users}}
