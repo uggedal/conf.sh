@@ -55,7 +55,7 @@ EOF
 
   root $root;
 
-  access_log  /var/log/nginx/${fqdn}.access.log;
+  access_log  /var/log/nginx/${fqdn}.access_log;
 
   keepalive_timeout 5;
 
