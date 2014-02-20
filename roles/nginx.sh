@@ -126,6 +126,7 @@ nginx_role() {
     daemon start nginx && \
     tmpl nginx.mime /etc/nginx/mime.types nginx && \
     tmpl nginx.conf /etc/nginx/nginx.conf nginx && \
+    tmpl nginx.logrotate /etc/logrotate.d/nginx && \
     inode dir /etc/nginx/conf.d 755 root root
 
   for i in $(seq 1 9); do
