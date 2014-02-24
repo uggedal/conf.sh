@@ -1,4 +1,4 @@
 syslog_role() {
-  pkg world app-admin/sysklogd && \
-  daemon enable sysklogd
+  daemon enable busybox-klogd && \
+  daemon enable busybox-syslogd
 }
