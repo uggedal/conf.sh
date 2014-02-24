@@ -43,7 +43,7 @@ _daemon_enable() {
   _daemon_enabled | grep "^$name\$" >/dev/null && return
 
   progress start daemon $name enable
-  err=$(rc-update add $name default 2>&1)
+  err=$(rc-update add $name default >/dev/null 2>&1)
   code=$?
   progress finish $code
   [ -z "$err" -a $code -ne 0 ] || progress result "$err"
