@@ -22,7 +22,7 @@ development_role() {
     dev-util/cloc \
     dev-util/clib
 
-  for target in base coreutils man gentoo ssh tmux git;do
+  for target in base coreutils man gentoo ssh tmux git; do
     [ -h /etc/bash_completion.d/$target ] \
       || eselect bashcomp enable --global $target
   done
