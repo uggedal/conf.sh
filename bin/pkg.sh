@@ -34,12 +34,25 @@ _pkg_accept() {
 _pkg_select() {
   local module=$1
   local choice=$2
+  local activation
+  local flags
 
-  eselect $module show | tail -n1 | sed 's/^ *//;s/ *$//' | grep -q "^$choice\$" || {
-    progress start pkg "$module $choice" select
-    eselect $module set $choice >/dev/null
-    progress finish $?
-  }
+  case $module in
+    bashcomp)
+      [ -h /etc/bash_completion.d/$choice ] && return
+      activation=enable
+      flags='--global'
+      ;;
+    *)
+      eselect $module show | tail -n1 | \
+        sed 's/^ *//;s/ *$//' | grep -q "^$choice\$" && return
+      activation=set
+      ;;
+  esac
+
+  progress start pkg "$module $choice" select
+  eselect $module $activation $flags $choice
+  progress finish $?
 }
 
 pkg() {
