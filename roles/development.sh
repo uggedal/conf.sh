@@ -5,7 +5,6 @@ development_role() {
   pkg accept =dev-util/cloc-1.60 ~amd64
 
   pkg world \
-    app-editors/vim \
     app-misc/tmux \
     dev-vcs/git \
     dev-vcs/tig \
