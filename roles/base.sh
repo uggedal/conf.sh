@@ -1,6 +1,6 @@
 base_role() {
   pkg world \
-    app-editors/vim \
+    app-editors/vim
 
   tmpl inputrc /etc/inputrc
 
