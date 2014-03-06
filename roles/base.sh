@@ -6,5 +6,7 @@ base_role() {
 
   pkg select editor /usr/bin/vi
 
-  fgrep -q btrfs /etc/fstab && pkg world sys-fs/btrfs-progs
+  if fgrep -q btrfs /etc/fstab; then
+    pkg world sys-fs/btrfs-progs
+  fi
 }
