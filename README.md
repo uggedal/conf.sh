@@ -2,12 +2,7 @@ conf
 ====
 
 Zero dependency configuration management for
-[Gentoo Linux][gentoo] machines in POSIX shell.
-
-Design
-------
-
-Merely updates world file so emerge can be executed interactively.
+[Alpine Linux][alpine] machines in POSIX shell.
 
 Usage
 -----
@@ -39,6 +34,6 @@ License
 
 MIT
 
-[gentoo]: http://gentoo.org/
+[alpine]: http://alpinelinux.org/
 [posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
 [cdist]: http://www.nico.schottelius.org/software/cdist/
