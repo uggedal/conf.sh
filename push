@@ -30,8 +30,6 @@ remote() {
 }
 
 mkrun() {
-  local role
-
   cat <<EOF > $run
 #!/bin/sh
 $debug
