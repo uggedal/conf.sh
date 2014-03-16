@@ -41,6 +41,19 @@ _usr_sshkey() {
     progress wrap 'usr sshkey' $user "printf '%s\n' \"$key\" >> $file"
 }
 
+_usr_dotfiles() {
+  local user=$1
+  local dir=/home/$user
+
+  [ -d $dir/.git ] || \
+    su -l $user -c "cd $dir && git init" || \
+    return 1
+
+  inode dir $dir/.git 755 $user && \
+    inode file $dir/.git/config 644 $user && \
+    tmpl dotfiles_config $dir/.git/config
+}
+
 usr() {
   local action=_usr_$1
   shift
