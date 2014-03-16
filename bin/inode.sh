@@ -25,7 +25,7 @@ inode() {
 
   [ $s_mode = $mode -a $s_user = $user -a $s_group = $group ] && return 0
 
-  progress start $type $p
+  progress start "inode $type" $p
   err=$(chmod $mode $p && chown $user $p && chgrp $group $p)
   code=$?
   progress finish $code

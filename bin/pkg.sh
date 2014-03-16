@@ -5,7 +5,7 @@ _pkg_add() {
 
   for p do
     apk info --quiet --installed $p || {
-      progress start pkg $p add
+      progress start 'pkg add' $p
       err=$(apk add --quiet $p 2>&1)
       rc=$?
       progress finish $rc
@@ -18,7 +18,7 @@ _pkg_add() {
 _pkg_sync() {
   local err rc
 
-  progress start pkg '' sync
+  progress start pkg sync
   err=$(apk update --quiet 2>&1)
   rc=$?
   progress finish $rc
@@ -30,7 +30,7 @@ _pkg_sync() {
 _pkg_upgrade() {
   local err rc
 
-  progress start pkg '' upgrade
+  progress start pkg upgrade
   err=$(apk upgrade --quiet 2>&1)
   rc=$?
   progress finish $rc

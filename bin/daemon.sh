@@ -25,7 +25,7 @@ _daemon_change_state() {
       ;;
   esac
 
-  progress start daemon $name $state
+  progress start "daemon $state" $name
   err=$(/etc/init.d/$name -q $state 2>&1)
   code=$?
   progress finish $code
@@ -42,7 +42,7 @@ _daemon_enable() {
 
   _daemon_enabled | grep "^$name\$" >/dev/null && return
 
-  progress start daemon $name enable
+  progress start 'daemon enable' $name
   err=$(rc-update add $name default >/dev/null 2>&1)
   code=$?
   progress finish $code
