@@ -24,6 +24,17 @@ _pkg_sync() {
   [ $rc -eq 0 ] || return $rc
 }
 
+_pkg_upgrade() {
+  local err rc
+
+  progress start pkg '' upgrade
+  err=$(apk upgrade --quiet 2>&1)
+  rc=$?
+  progress finish $rc
+  [ -z "$err" ] || progress result "$err"
+  [ $rc -eq 0 ] || return $rc
+}
+
 pkg() {
   local action=$1
   shift
