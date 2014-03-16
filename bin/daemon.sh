@@ -14,7 +14,6 @@ _daemon_stopped() {
 _daemon_change_state() {
   local state=$1
   local name=$2
-  local err code
 
   case $state in
     start)
@@ -25,11 +24,7 @@ _daemon_change_state() {
       ;;
   esac
 
-  progress start "daemon $state" $name
-  err=$(/etc/init.d/$name -q $state 2>&1)
-  code=$?
-  progress finish $code
-  [ -z "$err" -a $code -eq 0 ] || progress result "$err"
+  progress wrap "daemon $state" $name "/etc/init.d/$name -q $state"
 }
 
 _daemon_enabled() {
@@ -38,15 +33,10 @@ _daemon_enabled() {
 
 _daemon_enable() {
   local name=$1
-  local err code
 
   _daemon_enabled | grep "^$name\$" >/dev/null && return
 
-  progress start 'daemon enable' $name
-  err=$(rc-update add $name default >/dev/null 2>&1)
-  code=$?
-  progress finish $code
-  [ -z "$err" -a $code -ne 0 ] || progress result "$err"
+  progress wrap 'daemon enable' $name "rc-update add $name default >/dev/null"
 }
 
 daemon() {
