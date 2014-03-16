@@ -7,6 +7,13 @@ _usr_add() {
     progress wrap 'usr add' $user "adduser -D -s $shell -G $group $user"
 }
 
+_usr_unlock() {
+  local user=$1
+
+  ! grep "^$user:!:" /etc/shadow >/dev/null || \
+    progress wrap 'usr unlock' $user "passwd -u $user >/dev/null"
+}
+
 _usr_groups() {
   local user=$1
   local groups=$3
