@@ -20,6 +20,20 @@ _usr_groups() {
   [ -z "$gcmd" ] || progress wrap 'usr groups' $user "${gcmd}true"
 }
 
+_usr_sshkey() {
+  local user=$1
+  local key="$2"
+  local dir=/home/$user/.ssh
+  local file=$dir/authorized_keys
+  local group
+
+  inode dir $dir 700 $user || return 1
+  inode file $file 600 $user || return 1
+
+  fgrep "$key" $file >/dev/null || \
+    progress wrap 'usr sshkey' $user "printf '%s\n' \"$key\" >> $file"
+}
+
 usr() {
   local action=_usr_$1
   shift

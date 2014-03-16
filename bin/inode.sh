@@ -3,9 +3,15 @@ inode() {
   local p=$2
   local mode=$3
   local user=$4
-  local group=$5
+  local group
   local rc=0
-  local s_mode s_user s_group err code
+  local s_mode s_user s_group
+
+  if [ $# -eq 5 ]; then
+    group=$5
+  else
+    group=$(id -ng $user)
+  fi
 
   case $type in
     dir)
