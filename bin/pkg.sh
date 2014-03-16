@@ -1,9 +1,9 @@
-pkg() {
+_pkg_add() {
   local err rc
 
   for p do
     apk info --quiet --installed $p || {
-      progress start pkg $p
+      progress start pkg $p add
       err=$(apk add --quiet $p 2>&1)
       rc=$?
       progress finish $rc
@@ -11,4 +11,11 @@ pkg() {
       [ $rc -eq 0 ] || return $rc
     }
   done
+}
+
+pkg() {
+  local action=$1
+  shift
+
+  _pkg_$action "$@"
 }
