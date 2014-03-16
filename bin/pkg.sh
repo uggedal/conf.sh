@@ -1,9 +1,16 @@
 _pkg_add() {
-  local err rc
+  local err rc variants
 
   for p do
-    apk info --quiet --installed $p || \
-      progress wrap 'pkg add' $p "apk add --quiet $p" || return 1
+    variants=$p
+    [ -z "$_pkg_doc" ] || variants="$variants $p-doc"
+    [ -z "$_pkg_bash_completion" ] || variants="$variants $p-bash-completion"
+
+    for v in $variants; do
+      [ $v = $p ] || [ -n "$(apk info -s $v)" ] || continue
+      apk info --quiet --installed $v || \
+        progress wrap 'pkg add' $v "apk add --quiet $v" || return 1
+    done
   done
 }
 
