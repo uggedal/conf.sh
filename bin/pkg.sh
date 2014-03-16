@@ -3,7 +3,7 @@ _pkg_add() {
 
   for p do
     apk info --quiet --installed $p || \
-      progress wrap 'pkg add' $p "apk add --quiet $p"
+      progress wrap 'pkg add' $p "apk add --quiet $p" || return 1
   done
 }
 
