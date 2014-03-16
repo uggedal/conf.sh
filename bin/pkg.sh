@@ -7,7 +7,7 @@ _pkg_add() {
     [ -z "$_pkg_bash_completion" ] || variants="$variants $p-bash-completion"
 
     for v in $variants; do
-      [ $v = $p ] || [ -n "$(apk info -s $v)" ] || continue
+      [ $v = $p ] || [ -n "$(apk info --size $v)" ] || continue
       apk info --quiet --installed $v || \
         progress wrap 'pkg add' $v "apk add --quiet $v" || return 1
     done
