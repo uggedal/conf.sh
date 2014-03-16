@@ -1,8 +1,0 @@
-/var/log/nginx/*_log {
-  rotate 540
-  missingok
-  sharedscripts
-  postrotate
-    test -r /run/nginx.pid && kill -USR1 `cat /run/nginx.pid`
-  endscript
-}

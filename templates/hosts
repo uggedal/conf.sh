@@ -1,2 +1,0 @@
-127.0.0.1 {{_hostname_full}} {{_hostname_short}} localhost
-::1 {{_hostname_full}} {{_hostname_short}} localhost
