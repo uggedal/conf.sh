@@ -34,11 +34,18 @@ mkrun() {
 #!/bin/sh
 $debug
 $(sed '/^_/!d; s/^/export /' $env)
+
+role() {
+  \${1}_role || {
+    printf '%s failed\n' \$1 >&2
+    exit 1
+  }
+}
 EOF
 
   cat bin/*.sh roles/*.sh handlers/*.sh >> $run
 
-  printf '%s_role || exit 1\n' $roles >> $run
+  printf 'role %s\n' $roles >> $run
   chmod 700 $run
 }
 
