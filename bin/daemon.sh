@@ -11,7 +11,7 @@ _daemon_stopped() {
   [ $? -eq 3 ]
 }
 
-_daemon_change_stage() {
+_daemon_change_state() {
   local state=$1
   local name=$2
   local err code
@@ -55,7 +55,7 @@ daemon() {
 
   case $action in
     start|stop|restart)
-      _daemon_change_stage $action "$@"
+      _daemon_change_state $action "$@"
       ;;
     enable)
       _daemon_enable "$@"
