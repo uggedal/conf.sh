@@ -35,7 +35,7 @@ mkrun() {
   cat <<EOF > $run
 #!/bin/sh
 $debug
-$(grep '^_' < $env | sed 's/^/export /')
+$(sed '/^_/!d; s/^/export /' $env)
 EOF
 
   cat bin/*.sh >> $run
