@@ -4,20 +4,25 @@ inode() {
   local mode=$3
   local user=$4
   local group=$5
-  local exists s_mode s_user s_group err code
+  local rc=0
+  local s_mode s_user s_group err code
 
   case $type in
     dir)
-      [ -d $p ] || mkdir -p $p
-      exists=$?
+      [ -d $p ] || {
+        progress wrap "$type create" $p "mkdir -p $p"
+        rc=$?
+      }
       ;;
     file)
-      [ -f $p ] || touch $p
-      exists=$?
+      [ -f $p ] || {
+        progress wrap "$type create" $p "touch $p"
+        rc=$?
+      }
       ;;
   esac
 
-  [ $exists -eq 0 ] || return $exists
+  [ $rc -eq 0 ] || return $rc
 
   s_mode=$(stat -c %a $p)
   s_user=$(stat -c %U $p)
@@ -25,6 +30,6 @@ inode() {
 
   [ $s_mode = $mode -a $s_user = $user -a $s_group = $group ] && return 0
 
-  progress wrap "inode $type" $p \
+  progress wrap "$type mode" $p \
     "chmod $mode $p && chown $user $p && chgrp $group $p"
 }
