@@ -26,6 +26,7 @@ _pkg_sync() {
   [ $rc -eq 0 ] || return $rc
 }
 
+# TODO: apk update returns 0 on wget error
 _pkg_upgrade() {
   local err rc
 
