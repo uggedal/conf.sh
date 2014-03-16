@@ -39,8 +39,8 @@ _pkg_upgrade() {
 }
 
 pkg() {
-  local action=$1
+  local action=_pkg_$1
   shift
 
-  _pkg_$action "$@"
+  $action "$@"
 }
