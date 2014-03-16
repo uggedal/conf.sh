@@ -1,3 +1,5 @@
+# TODO: abstract progress
+
 _pkg_add() {
   local err rc
 
