@@ -33,7 +33,7 @@ mkrun() {
   cat <<EOF > $run
 #!/bin/sh
 $debug
-$(sed '/^_/!d; s/^/export /' $env)
+$(sed 's/^_/export _/' $env)
 
 role() {
   \${1}_role || {
