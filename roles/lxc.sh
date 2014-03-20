@@ -1,3 +1,4 @@
 lxc_role() {
-  pkg add lxc
+  pkg add lxc && \
+    tmpl lxc.default.conf /etc/lxc/default.conf
 }
