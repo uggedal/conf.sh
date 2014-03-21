@@ -4,3 +4,9 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
   hostname {{_network_hostname}}
+
+{{#_network_bridge_if}}
+auto {{_network_bridge_if}}
+iface {{_network_bridge_if}} inet dhcp
+  bridge-ports {{_network_bridge_ports}}
+{{/_network_bridge_if}}
