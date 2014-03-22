@@ -8,7 +8,6 @@ iface eth0 inet dhcp
 {{#_network_bridge_if}}
 auto {{_network_bridge_if}}
 iface {{_network_bridge_if}} inet dhcp
-  bridge-ports {{_network_bridge_ports}}
   bridge-fd 0
   bridge-stp 0
   bridge-hello 10
