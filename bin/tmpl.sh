@@ -8,7 +8,6 @@ tmpl() {
   local tmpl_awk='
 BEGIN {
   ignoring_section = 0
-  buf = ""
 }
 
 {
