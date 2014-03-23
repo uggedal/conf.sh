@@ -7,20 +7,20 @@ tmpl() {
 
   local tmpl_awk='
 BEGIN {
-  section_ignore = 0
+  ignoring_section = 0
   buf = ""
 }
 
 {
   buf = ""
   parse($0)
-  if (!(section_ignore && length(buf) == 0)) {
+  if (!(ignoring_section && length(buf) == 0)) {
     print buf
   }
 }
 
 function push(chunk) {
-  if (!section_ignore) {
+  if (!ignoring_section) {
     buf = (buf chunk)
   }
 }
@@ -50,10 +50,10 @@ function parse(line) {
     if (modifier == "#" || modifier == "^") {
       key = substr(unprocessed, RSTART+3, RLENGTH-5)
       if (ignore_section(modifier, key)) {
-        section_ignore = 1
+        ignoring_section = 1
       }
     } else if (modifier == "/") {
-      section_ignore = 0
+      ignoring_section = 0
     } else {
       key = substr(unprocessed, RSTART+2, RLENGTH-4)
       push(ENVIRON[key])
