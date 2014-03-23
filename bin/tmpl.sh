@@ -49,9 +49,7 @@ function parse(line) {
 
     if (modifier == "#" || modifier == "^") {
       key = substr(unprocessed, RSTART+3, RLENGTH-5)
-      if (ignore_section(modifier, key)) {
-        ignoring_section = 1
-      }
+      ignoring_section = ignore_section(modifier, key)
     } else if (modifier == "/") {
       ignoring_section = 0
     } else {
