@@ -72,10 +72,7 @@ function parse(line) {
 
   progress finish $rc
 
-  [ $rc -eq 0 ] || {
-    progress result "$diff"
-    return
-  }
+  [ $rc -eq 0 ] || return $rc
 
   progress result "$diff"
 
