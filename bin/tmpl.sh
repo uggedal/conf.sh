@@ -25,6 +25,11 @@ function push(chunk) {
   }
 }
 
+function ignore_section(mod, key) {
+  len = length(ENVIRON[key])
+  return (mod == "#" && len == 0) || (mod == "^" && len != 0)
+}
+
 function parse(line) {
   cursor = 1
 
@@ -42,9 +47,9 @@ function parse(line) {
 
     modifier = substr(unprocessed, RSTART+2, 1)
 
-    if (modifier == "#") {
+    if (modifier == "#" || modifier == "^") {
       key = substr(unprocessed, RSTART+3, RLENGTH-5)
-      if (length(ENVIRON[key]) == 0) {
+      if (ignore_section(modifier, key)) {
         section_ignore = 1
       }
     } else if (modifier == "/") {
