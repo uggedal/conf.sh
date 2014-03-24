@@ -8,7 +8,7 @@ IPTABLES_SAVE="/etc/iptables/rules-save"
 SAVE_RESTORE_OPTIONS="-c"
 
 # Save state on stopping iptables
-SAVE_ON_STOP="yes"
+SAVE_ON_STOP="no"
 
 # Enable/disable IPv4 forwarding with the rules
 {{#_iptables_nat_if}}
