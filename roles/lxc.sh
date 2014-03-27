@@ -10,15 +10,18 @@ _lxc_create() {
   progress wrap 'lxc create' $name "$cmd >/dev/null"
 }
 
+_container_field() {
+  printf '%s' $1 | cut -d: -f$2
+}
+
 _lxc_containers() {
   local ip_prefix=${_network_bridge_address%.*}
-  local ip_suffix=10
-  local name release rootfs
+  local ip_suffix name release rootfs
 
   for container in $_lxc_containers; do
-    name=${container%%:*}
-    release=${container##*:}
-    ip_suffix=$(($ip_suffix + 1))
+    name=$(_container_field $container 1)
+    release=$(_container_field $container 2)
+    ip_suffix=$(_container_field $container 3)
     rootfs=/var/lib/lxc/$name/rootfs
 
     _lxc_create $name $release || return 1
