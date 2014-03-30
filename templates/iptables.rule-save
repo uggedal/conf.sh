@@ -1,9 +1,0 @@
-*nat
-:PREROUTING ACCEPT [0:0]
-:INPUT ACCEPT [0:0]
-:OUTPUT ACCEPT [1:80]
-:POSTROUTING ACCEPT [0:0]
-{{#_iptables_nat_if}}
--A POSTROUTING -o {{_iptables_nat_if}} -j MASQUERADE
-{{/_iptables_nat_if}}
-COMMIT
