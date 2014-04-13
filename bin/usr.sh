@@ -16,7 +16,7 @@ _usr_unlock() {
 
 _usr_groups() {
   local user=$1
-  local groups=$3
+  local groups=$2
   local gcmd
 
 
