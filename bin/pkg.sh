@@ -1,3 +1,14 @@
+_pkg_world_cache=
+
+_pkg_installed() {
+  [ -n "$_pkg_world_cache" ] || _pkg_world_cache="$(cat /etc/apk/world)"
+
+  for p in $_pkg_world_cache; do
+    [ "$p" = "$1" ] && return
+  done
+  return 1
+}
+
 _pkg_add() {
   local err rc variants
 
@@ -7,9 +18,11 @@ _pkg_add() {
     [ -z "$_pkg_bash_completion" ] || variants="$variants $p-bash-completion"
 
     for v in $variants; do
+      _pkg_installed $v && continue
+
       [ $v = $p ] || [ -n "$(apk info --size $v)" ] || continue
-      apk info --quiet --installed $v || \
-        progress wrap 'pkg add' $v "apk add --quiet $v" || return 1
+
+      progress wrap 'pkg add' $v "apk add --quiet $v" || return 1
     done
   done
 }
