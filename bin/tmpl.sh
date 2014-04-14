@@ -59,11 +59,12 @@ function parse(line) {
 }
 '
 
-  trap "rm $tmp" EXIT TERM INT
-
   awk "$tmpl_awk" $src > $tmp
 
-  diff=$(diff -u $dest $tmp) && return
+  diff=$(diff -u $dest $tmp) && {
+    rm $tmp
+    return
+  }
 
   progress start tmpl $dest
 
@@ -72,9 +73,14 @@ function parse(line) {
 
   progress finish $rc
 
-  [ $rc -eq 0 ] || return $rc
+  [ $rc -eq 0 ] || {
+    rm $tmp
+    return $rc
+  }
 
   progress result "$diff"
 
   [ -z "$handler" ] || notify $handler tmpl changed $dest
+
+  rm $tmp
 }
