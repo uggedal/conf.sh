@@ -20,7 +20,7 @@ _pkg_add() {
     for v in $variants; do
       _pkg_installed $v && continue
 
-      [ $v = $p ] || [ -n "$(apk info --size $v)" ] || continue
+      [ $v = $p ] || [ -n "$(apk info --quiet --size $v)" ] || continue
 
       progress wrap 'pkg add' $v "apk add --quiet $v" || return 1
     done
