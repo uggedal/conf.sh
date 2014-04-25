@@ -1,3 +1,3 @@
 irc_role() {
-  pkg add irssi
+  pkg add irssi-perl
 }
