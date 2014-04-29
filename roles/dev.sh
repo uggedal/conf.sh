@@ -5,6 +5,7 @@ dev_role() {
     vimdiff \
     less \
     git-perl \
+    git-subtree \
     hub \
     ghi \
     inotify-tools \
