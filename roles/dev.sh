@@ -11,6 +11,5 @@ dev_role() {
     inotify-tools \
     htop \
     lsof \
-    siege \
     ncdu
 }
