@@ -8,6 +8,7 @@ dev_role() {
     git-subtree \
     hub \
     ghi \
+    sprunge \
     inotify-tools \
     htop \
     lsof \
