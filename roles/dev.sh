@@ -9,6 +9,7 @@ dev_role() {
     hub \
     ghi \
     sprunge \
+    tree \
     inotify-tools \
     htop \
     lsof \
