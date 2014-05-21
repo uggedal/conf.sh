@@ -5,6 +5,13 @@
   }
 {{/_nginx_aliases}}
 
+{{#_nginx_subdomain_redirect}}
+  server {
+    server_name {{_nginx_subdomain_redirect}}.{{_nginx_fqdn}};
+    rewrite ^ http://{{_nginx_fqdn}}/{{_nginx_subdomain_redirect}}$request_uri? permanent;
+  }
+{{/_nginx_subdomain_redirect}}
+
 server {
   server_name {{_nginx_fqdn}};
   client_max_body_size 10m;
