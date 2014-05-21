@@ -24,7 +24,7 @@ _daemon_change_state() {
       ;;
   esac
 
-  progress wrap "daemon $state" $name "/etc/init.d/$name -q $state"
+  progress wrap "daemon $state" $name "/etc/init.d/$name -q $state 2>/dev/null"
 }
 
 _daemon_enabled() {
