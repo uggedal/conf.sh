@@ -1,4 +1,4 @@
 syslog_role() {
-  daemon enable syslog && \
+  daemon enable syslog &&
     daemon start syslog
 }
