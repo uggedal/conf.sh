@@ -51,7 +51,7 @@ UWSGI_GROUP=
 # Run the uwsgi emperor which loads vassals dynamically from this PATH
 # see http://projects.unbit.it/uwsgi/wiki/Emperor
 # The advised Gentoo folder is /etc/uwsgi.d/
-UWSGI_EMPEROR_PATH=
+UWSGI_EMPEROR_PATH=/etc/uwsgi.d
 
 # The group the emperor should run as. This is different from the UWSGI_GROUP
 # as you could want your apps share some sockets with other processes such as
