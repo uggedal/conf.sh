@@ -12,6 +12,12 @@
   }
 {{/_nginx_subdomain_redirect}}
 
+{{#_nginx_upstream}}
+  upstream {{_nginx_fqdn}}-backend {
+    server {{_nginx_upstream}} fail_timeout=0;
+  }
+{{/_nginx_upstream}}
+
 server {
   server_name {{_nginx_fqdn}};
   client_max_body_size 10m;
@@ -28,6 +34,18 @@ server {
   }
 
   location / {
-    index  index.html;
+    {{#_nginx_upstream}}
+      try_files $uri @{{_nginx_fqdn}}-backend;
+    {{/_nginx_upstream}}
+    {{^_nginx_upstream}}
+      index  index.html;
+    {{/_nginx_upstream}}
   }
+
+  {{#_nginx_upstream}}
+    location @{{_nginx_fqdn}}-backend  {
+      include uwsgi_params;
+      uwsgi_pass {{_nginx_fqdn}}-backend;
+    }
+  {{/_nginx_upstream}}
 }
