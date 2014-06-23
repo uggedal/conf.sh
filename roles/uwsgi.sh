@@ -20,7 +20,7 @@ _uwsgi_vassals() {
       _uwsgi_export $i $v
     done
 
-    tmpl vassal.conf $conf
+    tmpl uwsgi.d $conf
   done
 }
 
