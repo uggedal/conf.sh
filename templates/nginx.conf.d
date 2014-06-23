@@ -33,6 +33,14 @@ server {
     log_not_found off;
   }
 
+  {{#_nginx_static_prefix}}
+    location {{_nginx_static_prefix}} {
+      expires max;
+      access_log off;
+      log_not_found off;
+    }
+  {{/_nginx_static_prefix}}
+
   location / {
     {{#_nginx_upstream}}
       try_files $uri @{{_nginx_fqdn}}-backend;
