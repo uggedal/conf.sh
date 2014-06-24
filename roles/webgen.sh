@@ -1,5 +1,7 @@
 webgen_role() {
   pkg add py-pygments \
     py-hoedown \
-    rsync
+    rsync \
+    py-setuptools \
+    nodejs
 }
