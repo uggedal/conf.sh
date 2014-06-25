@@ -16,11 +16,13 @@ _uwsgi_vassals() {
 
     inode file $conf 644 || return 1
 
-    for v in chdir module django processes idle; do
+    for v in chdir pkg module django processes idle; do
       _uwsgi_export $i $v
     done
 
-    tmpl uwsgi.d $conf
+    pkg add $_uwsgi_pkg || return 1
+
+    tmpl uwsgi.d $conf || return 1
   done
 }
 
