@@ -14,7 +14,7 @@
 # Leave empty to use an IP socket (default). See below. Enabling this,
 # disables the IP socket.
 #
-FCGI_SOCKET=/var/run/spawn-fcgi/{{_cgi_name}}
+FCGI_SOCKET=/var/run/spawn-fcgi.fcgiwrap.sock
 
 # When using FCGI_PORT, connections will only be accepted from the following
 # address. The default is 127.0.0.1. Use 0.0.0.0 to bind to all addresses.
@@ -36,7 +36,7 @@ FCGI_PROGRAM=/usr/bin/fcgiwrap
 
 # The number of child processes to spawn. The default is 1.
 #
-FCGI_CHILDREN=1
+FCGI_CHILDREN={{_cgi_processes}}
 
 # If you want to run your application inside a chroot then specify the
 # directory here. Leave this blank otherwise.
