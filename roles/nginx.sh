@@ -17,7 +17,8 @@ _nginx_sites() {
     inode dir /var/www/${fqdn} 755 nginx || return 1
     inode file $conf 644 || return 1
 
-    for v in fqdn aliases upstream static_prefix subdomain_redirect; do
+    for v in fqdn aliases root upstream static_prefix \
+             cgi_script cgi_pass subdomain_redirect; do
       _nginx_export $i $v
     done
 

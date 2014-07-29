@@ -22,7 +22,12 @@ server {
   server_name {{_nginx_fqdn}};
   client_max_body_size 10m;
 
-  root /var/www/{{_nginx_fqdn}};
+  {{#_nginx_root}}
+    root {{_nginx_root}};
+  {{/_nginx_root}}
+  {{^_nginx_root}}
+    root /var/www/{{_nginx_fqdn}};
+  {{/_nginx_root}}
 
   access_log  /var/log/nginx/{{_nginx_fqdn}}.access_log;
 
@@ -46,7 +51,15 @@ server {
       try_files $uri @{{_nginx_fqdn}}-backend;
     {{/_nginx_upstream}}
     {{^_nginx_upstream}}
-      index  index.html;
+      {{#_nginx_cgi_pass}}
+        include fastcgi_params;
+        fastcgi_param DOCUMENT_ROOT {{_nginx_root}};
+        fastcgi_param SCRIPT_FILENAME {{_nginx_cgi_script}};
+        fastcgi_pass {{_nginx_cgi_pass}};
+      {{/_nginx_cgi_pass}}
+      {{^_nginx_cgi_pass}}
+        index  index.html;
+      {{/_nginx_cgi_pass}}
     {{/_nginx_upstream}}
   }
 
