@@ -6,5 +6,4 @@ cgi_role() {
     tmpl conf.d.spawn-fcgi /etc/conf.d/spawn-fcgi.fcgiwrap &&
     daemon enable spawn-fcgi.fcgiwrap &&
     daemon start spawn-fcgi.fcgiwrap
-
 }
