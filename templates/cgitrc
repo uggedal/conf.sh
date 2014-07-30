@@ -7,6 +7,7 @@ enable-log-linecount=1
 enable-commit-graph=1
 max-stats=year
 snapshots=tar.gz
+source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
 
 virtual-root=/
 scan-path=/var/lib/git
