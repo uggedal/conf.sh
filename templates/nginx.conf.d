@@ -51,22 +51,22 @@ server {
       try_files $uri @{{_nginx_fqdn}}-backend;
     {{/_nginx_upstream}}
     {{^_nginx_upstream}}
-      {{#_nginx_cgi_pass}}
-        include fastcgi_params;
-        fastcgi_param DOCUMENT_ROOT {{_nginx_root}};
-        fastcgi_param SCRIPT_FILENAME {{_nginx_cgi_script}};
-        fastcgi_pass {{_nginx_cgi_pass}};
-      {{/_nginx_cgi_pass}}
-      {{^_nginx_cgi_pass}}
-        index  index.html;
-      {{/_nginx_cgi_pass}}
+      index  index.html;
     {{/_nginx_upstream}}
   }
 
   {{#_nginx_upstream}}
     location @{{_nginx_fqdn}}-backend  {
-      include uwsgi_params;
-      uwsgi_pass {{_nginx_fqdn}}-backend;
+      {{#_nginx_cgi_script}}
+        include fastcgi_params;
+        fastcgi_param DOCUMENT_ROOT {{_nginx_root}};
+        fastcgi_param SCRIPT_FILENAME {{_nginx_cgi_script}};
+        fastcgi_pass {{_nginx_fqdn}}-backend;
+      {{/_nginx_cgi_script}}
+      {{^_nginx_cgi_script}}
+        include uwsgi_params;
+        uwsgi_pass {{_nginx_fqdn}}-backend;
+      {{/_nginx_cgi_script}}
     }
   {{/_nginx_upstream}}
 }
