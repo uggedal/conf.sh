@@ -56,6 +56,9 @@ server {
         include fastcgi_params;
         fastcgi_param DOCUMENT_ROOT {{_nginx_root}};
         fastcgi_param SCRIPT_FILENAME {{_nginx_cgi_script}};
+        fastcgi_param PATH_INFO $uri;
+        fastcgi_param QUERY_STRING $args;
+        fastcgi_param HTTP_HOST $server_name;
         fastcgi_pass {{_nginx_fqdn}}-backend;
       {{/_nginx_cgi_script}}
       {{^_nginx_cgi_script}}
