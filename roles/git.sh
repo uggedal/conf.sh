@@ -7,7 +7,7 @@ _has_id() {
 }
 
 git_role() {
-  local name description
+  local name repo description stamp
   local root=/var/lib/git
 
   pkg add git
@@ -20,12 +20,16 @@ git_role() {
   for i in $(seq -w 1 99); do
     name=$(_git_var $i name)
     description="$(_git_var $i description)"
+    repo=$root/$name
 
     [ -z "$name" ] && return
 
-    [ -f $root/$name/HEAD ] ||
-      sudo -u git git init --bare --shared=group $root/$name
+    [ -f $repo/HEAD ] ||
+      sudo -u git git init --bare --shared=group $repo
 
-    printf '%s\n' "$description" > $root/$name/description
+    printf '%s\n' "$description" > $repo/description
+
+    stamp="$(GIT_DIR=$repo git log -1 --format=%ai | awk '{ print $1, $2 }')"
+    touch -d "$stamp" $repo/refs/heads/master
   done
 }
