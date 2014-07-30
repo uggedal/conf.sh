@@ -1,5 +1,6 @@
 root-title=uggedal.com repos
 root-desc=
+logo=/git.uggedal.com.png
 repository-sort=age
 
 enable-log-filecount=1

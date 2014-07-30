@@ -53,7 +53,7 @@ sync() {
   remote || return 0
   (
     cd ..
-    tar cpf - $repo/$run $repo/templates \
+    tar cpf - $repo/$run $repo/templates $repo/files \
       | ssh $user@$host "tar xpf - -C $(dirname $dest)"
   )
 }
