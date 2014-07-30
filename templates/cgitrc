@@ -6,6 +6,7 @@ enable-log-filecount=1
 enable-log-linecount=1
 enable-commit-graph=1
 enable-index-owner=0
+enable-index-links=1
 max-stats=year
 clone-prefix=http://git.uggedal.com
 snapshots=tar.gz
