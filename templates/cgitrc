@@ -7,3 +7,5 @@ enable-log-linecount=1
 enable-commit-graph=1
 max-stats=year
 snapshots=tar.gz
+
+scan-path=/var/lib/git
