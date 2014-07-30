@@ -64,6 +64,8 @@ function parse(line) {
 
   awk "$tmpl_awk" $src > $tmp
 
+  [ -f $dest ] || touch $dest
+
   diff=$(diff -u $dest $tmp) && {
     rm $tmp
     return
