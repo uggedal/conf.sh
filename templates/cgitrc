@@ -7,6 +7,7 @@ enable-log-linecount=1
 enable-commit-graph=1
 enable-index-owner=0
 max-stats=year
+clone-prefix=http://git.uggedal.com
 snapshots=tar.gz
 source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
 
