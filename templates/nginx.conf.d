@@ -22,12 +22,7 @@ server {
   server_name {{_nginx_fqdn}};
   client_max_body_size 10m;
 
-  {{#_nginx_root}}
-    root {{_nginx_root}};
-  {{/_nginx_root}}
-  {{^_nginx_root}}
-    root /var/www/{{_nginx_fqdn}};
-  {{/_nginx_root}}
+  root {{_nginx_root}};
 
   access_log  /var/log/nginx/{{_nginx_fqdn}}.access_log;
 

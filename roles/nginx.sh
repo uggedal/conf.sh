@@ -22,6 +22,8 @@ _nginx_sites() {
       _nginx_export $i $v
     done
 
+    [ -n "$_nginx_root" ] || _nginx_root=/var/www/$_nginx_fqdn
+
     tmpl nginx.conf.d $conf nginx
   done
 }
