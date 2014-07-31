@@ -1,0 +1,3 @@
+#!/bin/sh
+
+obnam backup --quiet {{_obnam_root}}
