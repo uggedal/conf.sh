@@ -14,4 +14,4 @@ snapshots=tar.gz
 source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
 
 virtual-root=/
-scan-path=/var/lib/git
+scan-path=/var/lib/git/public
