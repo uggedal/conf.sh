@@ -6,6 +6,10 @@ _has_id() {
   cut -d: -f1 /etc/$1 | fgrep -q $2
 }
 
+_git_stamp() {
+  GIT_DIR=$repo git log -1 --format=%ai 2>/dev/null | awk '{ print $1, $2 }'
+}
+
 git_role() {
   local name repo description stamp
   local root=/var/lib/git
@@ -29,7 +33,7 @@ git_role() {
 
     printf '%s\n' "$description" > $repo/description
 
-    stamp="$(GIT_DIR=$repo git log -1 --format=%ai | awk '{ print $1, $2 }')"
-    touch -d "$stamp" $repo/refs/heads/master
+    stamp="$(_git_stamp)"
+    [ -z "$stamp" ] || touch -d "$stamp" $repo/refs/heads/master
   done
 }
