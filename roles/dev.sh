@@ -6,8 +6,6 @@ dev_role() {
     less \
     git-perl \
     git-subtree \
-    hub \
-    ghi \
     sprunge \
     tree \
     inotify-tools \
