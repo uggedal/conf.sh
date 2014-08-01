@@ -11,7 +11,7 @@ _git_stamp() {
 }
 
 git_role() {
-  local name repo description stamp
+  local name repo visibility description stamp
   local root=/var/lib/git
 
   pkg add git
@@ -19,14 +19,16 @@ git_role() {
   _has_id group git || addgroup -S git
   _has_id passwd git || adduser -SDH -G git -h $root -s /sbin/nologin git
 
-  inode dir $root 755 git || return 1
-
   for i in $(seq -w 1 99); do
     name=$(_git_var $i name)
     description="$(_git_var $i description)"
-    repo=$root/$name
+    visibility="$(_git_var $i visibility)"
+    repo=$root/$visibility/$name
 
     [ -z "$name" ] && return
+    [ -z "$visibility" ] && return 1
+
+    inode dir $root/$visibility 755 git || return 1
 
     [ -f $repo/HEAD ] ||
       sudo -u git git init --bare --shared=group $repo
