@@ -4,6 +4,7 @@ obnam_role() {
   local daily=/etc/periodic/daily/obnam
 
   pkg add obnam &&
+    inode dir /var/log/obnam 750 &&
     inode file $conf 640 &&
     inode file $hourly 740 &&
     inode file $daily 740 &&
