@@ -2,7 +2,6 @@
 
 self=$0
 env=
-debug=
 user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $self)))
 run=run.sh
@@ -14,7 +13,7 @@ die() {
 }
 
 parse() {
-  [ $# -eq 1 -o $# -eq 2 ] || die '%s: <env> [--debug]\n' $self
+  [ $# -eq 1 -o $# -eq 2 ] || die '%s: <env> [roles]\n' $self
 
   env=$(readlink -f $1)
   . $env
@@ -22,7 +21,7 @@ parse() {
   [ -n "$host" ] || die 'no host in %s\n' $env
   [ -n "$roles" ] || die 'no roles in %s\n' $env
 
-  [ $# -ne 2 -o "$2" != '--debug' ] || debug='set -x'
+  [ $# -ne 2 ] || roles="$2"
 }
 
 remote() {
@@ -32,7 +31,6 @@ remote() {
 mkrun() {
   cat <<EOF > $run
 #!/bin/sh
-$debug
 $(sed 's/^_/export _/' $env)
 
 role() {
