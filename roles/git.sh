@@ -13,6 +13,7 @@ _git_stamp() {
 git_role() {
   local name repo visibility description stamp
   local root=/var/lib/git
+  local git_init='sudo -u git git init -q --bare --shared=group'
 
   pkg add git
 
@@ -31,7 +32,7 @@ git_role() {
     inode dir $root/$visibility 755 git || return 1
 
     [ -f $repo/HEAD ] ||
-      sudo -u git git init --bare --shared=group $repo
+      progress wrap "git $visibility" $name "$git_init $repo"
 
     printf '%s\n' "$description" > $repo/description
 
