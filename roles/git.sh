@@ -11,7 +11,7 @@ _git_stamp() {
 }
 
 git_role() {
-  local name repo visibility description stamp
+  local name repo visibility section description stamp
   local root=/var/lib/git
   local git_init='sudo -u git git init -q --bare --shared=group'
 
@@ -24,7 +24,10 @@ git_role() {
     name=$(_git_var $i name)
     description="$(_git_var $i description)"
     visibility="$(_git_var $i visibility)"
-    repo=$root/$visibility/$name
+    section="$(_git_var $i section)"
+    repo=$root/$visibility
+    [ -n "$section" ] && repo=$repo/$section
+    repo=$repo/$name
 
     [ -z "$name" ] && return
     [ -z "$visibility" ] && return 1
