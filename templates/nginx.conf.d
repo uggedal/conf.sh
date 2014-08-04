@@ -24,7 +24,7 @@ server {
 
   root {{_nginx_root}};
 
-  access_log  /var/log/nginx/{{_nginx_fqdn}}.access_log;
+  access_log  /var/log/nginx/{{_nginx_fqdn}}.access.log;
 
   keepalive_timeout 5;
 
