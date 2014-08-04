@@ -32,6 +32,7 @@ uwsgi_role() {
     inode dir /etc/uwsgi.d 755 root &&
     inode dir /var/log/uwsgi 755 nginx &&
     tmpl conf.d.uwsgi /etc/conf.d/uwsgi uwsgi &&
+    tmpl logrotate.d.uwsgi /etc/logrotate.d/uwsgi &&
     daemon enable uwsgi &&
     daemon start uwsgi &&
     _uwsgi_vassals
