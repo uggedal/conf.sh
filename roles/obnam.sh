@@ -10,5 +10,6 @@ obnam_role() {
     inode file $daily 740 &&
     tmpl obnam.conf $conf &&
     tmpl periodic.hourly.obnam $hourly &&
-    tmpl periodic.daily.obnam $daily
+    tmpl periodic.daily.obnam $daily &&
+    tmpl logrotate.d.obnam /etc/logrotate.d/obnam
 }
