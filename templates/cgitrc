@@ -11,7 +11,9 @@ enable-index-links=1
 max-stats=year
 clone-prefix=http://git.uggedal.com
 snapshots=tar.gz
-source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
+readme=:README.md
+about-filter=/usr/lib/cgit/filters/md.py
+source-filter=/usr/lib/cgit/filters/highlight.py
 
 virtual-root=/
 section-from-path=1
