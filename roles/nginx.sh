@@ -1,15 +1,7 @@
-_nginx_var() {
-  eval printf '%s' \$_nginx_${1}_${2}
-}
-
-_nginx_export() {
-  eval export _nginx_${2}="\$_nginx_${1}_${2}"
-}
-
 _nginx_sites() {
   local fqdn conf
   for i in $(seq 1 9); do
-    fqdn=$(_nginx_var $i fqdn)
+    fqdn=$(var get nginx $i fqdn)
     [ -z "$fqdn" ] && return
 
     conf=/etc/nginx/conf.d/${fqdn}.conf
@@ -19,7 +11,7 @@ _nginx_sites() {
 
     for v in fqdn aliases root upstream static_prefix \
              cgi_script cgi_pass subdomain_redirect; do
-      _nginx_export $i $v
+      var export nginx $i $v
     done
 
     [ -n "$_nginx_root" ] || _nginx_root=/var/www/$_nginx_fqdn

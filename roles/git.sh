@@ -1,7 +1,3 @@
-_git_var() {
-  eval printf '%s' \"\$_git_${1}_${2}\"
-}
-
 _has_id() {
   cut -d: -f1 /etc/$1 | fgrep -q $2
 }
@@ -21,10 +17,10 @@ git_role() {
   _has_id passwd git || adduser -SDH -G git -h $root -s /sbin/nologin git
 
   for i in $(seq -w 1 99); do
-    name=$(_git_var $i name)
-    description="$(_git_var $i description)"
-    visibility="$(_git_var $i visibility)"
-    section="$(_git_var $i section)"
+    name=$(var get git $i name)
+    description="$(var get git $i description)"
+    visibility="$(var get git $i visibility)"
+    section="$(var get git $i section)"
     repo=$root/$visibility
     [ -n "$section" ] && repo=$repo/$section
     repo=$repo/$name
