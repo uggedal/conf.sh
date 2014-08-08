@@ -42,7 +42,7 @@ _usr_add() {
 _usr_unlock() {
   local user=$1
 
-  ! grep "^$user:!:" /etc/shadow >/dev/null || \
+  ! grep "^$user:!:" /etc/shadow >/dev/null ||
     progress wrap 'usr unlock' $user "passwd -u $user >/dev/null"
 }
 
@@ -69,7 +69,7 @@ _usr_sshkey() {
   inode dir $dir 700 $user || return 1
   inode file $file 600 $user || return 1
 
-  fgrep "$key" $file >/dev/null || \
+  fgrep "$key" $file >/dev/null ||
     progress wrap 'usr sshkey' $user "printf '%s\n' \"$key\" >> $file"
 }
 
@@ -77,12 +77,12 @@ _usr_dotfiles() {
   local user=$1
   local dir=/home/$user
 
-  [ -d $dir/.git ] || \
-    su -l $user -c "cd $dir && git init" || \
+  [ -d $dir/.git ] ||
+    su -l $user -c "cd $dir && git init" ||
     return 1
 
-  inode dir $dir/.git 755 $user && \
-    inode file $dir/.git/config 644 $user && \
+  inode dir $dir/.git 755 $user &&
+    inode file $dir/.git/config 644 $user &&
     tmpl dotfiles_config $dir/.git/config
 }
 
