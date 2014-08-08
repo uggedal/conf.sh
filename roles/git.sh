@@ -1,5 +1,5 @@
 _has_id() {
-  cut -d: -f1 /etc/$1 | fgrep -q $2
+  cut -d: -f1 /etc/$1 | grep -q "^$2\$"
 }
 
 _git_stamp() {
@@ -13,8 +13,7 @@ git_role() {
 
   pkg add git
 
-  _has_id group git || addgroup -S git
-  _has_id passwd git || adduser -SDH -G git -h $root -s /sbin/nologin git
+  usr add -S -u git -g git -h $root -s /sbin/nologin
 
   for i in $(seq -w 1 99); do
     name=$(var get git $i name)
