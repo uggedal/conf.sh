@@ -1,5 +1,5 @@
 _var_get() {
-  eval printf '%s' \$_${1}_${2}_${3}
+  eval printf '%s' \"\$_${1}_${2}_${3}\"
 }
 
 _var_export() {
