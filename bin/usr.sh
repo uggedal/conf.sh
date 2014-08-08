@@ -1,10 +1,42 @@
-_usr_add() {
-  local user=$1
-  local group=$2
-  local shell=$3
+_has_id() {
+  cut -d: -f1 /etc/$1 | grep -q "^$2\$"
+}
 
-  id $user >/dev/null 2>&1 || \
-    progress wrap 'usr add' $user "adduser -D -s $shell -G $group $user"
+_usr_add() {
+  local user group
+
+  local gcmd=addgroup
+  local ucmd='adduser -D'
+
+  while getopts "u:g:s:h:S" opt; do
+    case $opt in
+      u)
+        user=$OPTARG
+        ;;
+      g)
+        group=$OPTARG
+        ucmd="$ucmd -G $OPTARG"
+        ;;
+      s)
+        ucmd="$ucmd -s $OPTARG"
+        ;;
+      h)
+        ucmd="$ucmd -H -h $OPTARG"
+        ;;
+      S)
+        gcmd="$gcmd -S"
+        ucmd="$ucmd -S"
+        ;;
+    esac
+  done
+
+  [ -n "$user" -a -n "$group" ] || return 1
+
+  _has_id group $group ||
+    progress wrap 'usr group' $user "$gcmd $group"
+
+  _has_id passwd $user ||
+    progress wrap 'usr add' $user "$ucmd $user"
 }
 
 _usr_unlock() {
