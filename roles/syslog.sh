@@ -1,4 +1,4 @@
 syslog_role() {
-  daemon enable syslog &&
-    daemon start syslog
+  pkg add rsyslog &&
+    inode link /etc/sv/rsyslogd /var/service/rsyslogd
 }
