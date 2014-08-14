@@ -5,9 +5,6 @@ dev_role() {
     vimdiff \
     less \
     git-perl \
-    git-subtree \
-    sprunge \
-    tree \
     inotify-tools \
     htop \
     lsof \
