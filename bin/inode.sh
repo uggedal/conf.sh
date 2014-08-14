@@ -30,7 +30,7 @@ inode() {
       ;;
   esac
 
-  [ $(stat -c %a $node) != "$mode" ] &&
+  [ -n "$mode" -a $(stat -c %a $node) != "$mode" ] &&
     progress wrap "$type mode" $node "chmod $mode $node"
   [ $(stat -c %U $node) != $user ] &&
     progress wrap "$type user" $node "chown $user $node"
