@@ -1,3 +1,4 @@
 network_role() {
-  tmpl network.interfaces /etc/network/interfaces network
+  tmpl hostname /etc/hostname &&
+    inode link /etc/sv/dhcpcd /var/service/dhcpcd
 }
