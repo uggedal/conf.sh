@@ -5,8 +5,8 @@ _has_id() {
 _usr_add() {
   local user group
 
-  local gcmd=addgroup
-  local ucmd='adduser -D'
+  local gcmd=groupadd
+  local ucmd=useradd
 
   while getopts "u:g:s:h:S" opt; do
     case $opt in
@@ -15,17 +15,17 @@ _usr_add() {
         ;;
       g)
         group=$OPTARG
-        ucmd="$ucmd -G $OPTARG"
+        ucmd="$ucmd -g $OPTARG"
         ;;
       s)
         ucmd="$ucmd -s $OPTARG"
         ;;
       h)
-        ucmd="$ucmd -H -h $OPTARG"
+        ucmd="$ucmd -M -d $OPTARG"
         ;;
       S)
-        gcmd="$gcmd -S"
-        ucmd="$ucmd -S"
+        gcmd="$gcmd -r"
+        ucmd="$ucmd -r"
         ;;
     esac
   done
@@ -39,24 +39,18 @@ _usr_add() {
     progress wrap 'usr add' $user "$ucmd $user"
 }
 
-_usr_unlock() {
-  local user=$1
-
-  ! grep "^$user:!:" /etc/shadow >/dev/null ||
-    progress wrap 'usr unlock' $user "passwd -u $user >/dev/null"
-}
-
 _usr_groups() {
   local user=$1
   local groups=$2
-  local gcmd
-
+  local ok=1
 
   for g in $groups; do
-    id -nG $user | fgrep -q $g || gcmd="${gcmd}addgroup $user $g && "
+    id -nG $user | tr ' ' '\n' | fgrep -q $g || ok=0
   done
 
-  [ -z "$gcmd" ] || progress wrap 'usr groups' $user "${gcmd}true"
+  local csv=$(printf "$groups" | tr ' ' ',')
+
+  [ "$ok" -eq 1 ] || progress wrap 'usr groups' $user "usermod -G $csv $user"
 }
 
 _usr_sshkey() {
