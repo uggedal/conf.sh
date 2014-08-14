@@ -1,7 +1,10 @@
 sudo_role() {
-  local f=/etc/sudoers.d/wheel
+  local conf=/etc/sudoers
+  local wheel=/etc/sudoers.d/wheel
 
   pkg add sudo &&
-    inode file $f 440 root &&
-    tmpl sudoers.d.wheel $f
+    inode file $conf 440 root &&
+    tmpl sudoers $conf &&
+    inode file $wheel 440 root &&
+    tmpl sudoers.d.wheel $wheel
 }
