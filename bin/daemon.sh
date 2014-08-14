@@ -3,7 +3,7 @@ _daemon_enable() {
 }
 
 _daemon_restart() {
-  progress wrap "sv restart /var/service/$1"
+  progress wrap 'daemon restart' $1 "sv restart /var/service/$1 >/dev/null"
 }
 
 daemon() {
