@@ -3,6 +3,7 @@ dev_role() {
     tmux \
     vim \
     less \
+    curl \
     git-perl \
     inotify-tools \
     htop \
