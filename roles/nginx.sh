@@ -6,7 +6,7 @@ _nginx_sites() {
 
     conf=/etc/nginx/conf.d/${fqdn}.conf
 
-    inode dir /var/www/${fqdn} 755 nginx || return 1
+    inode dir /srv/http/${fqdn} 755 nginx || return 1
     inode file $conf 644 || return 1
 
     for v in fqdn aliases root upstream static_prefix \
@@ -14,7 +14,7 @@ _nginx_sites() {
       var export nginx $i $v
     done
 
-    [ -n "$_nginx_root" ] || _nginx_root=/var/www/$_nginx_fqdn
+    [ -n "$_nginx_root" ] || _nginx_root=/srv/http/$_nginx_fqdn
 
     tmpl nginx.conf.d $conf nginx
   done
