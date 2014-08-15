@@ -41,7 +41,9 @@ _usr_add() {
 
 _usr_groups() {
   local user=$1
-  local groups=$2
+  shift
+  local groups
+  groups="$@"
   local ok=1
 
   for g in $groups; do
