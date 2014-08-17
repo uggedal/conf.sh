@@ -1,7 +1,7 @@
 obnam_role() {
   local conf=/etc/obnam.conf
-  local hourly=/etc/periodic/hourly/obnam
-  local daily=/etc/periodic/daily/obnam
+  local hourly=/etc/cron.hourly/obnam
+  local daily=/etc/cron.daily/obnam
 
   pkg add obnam &&
     inode dir /var/log/obnam 750 &&
@@ -9,7 +9,7 @@ obnam_role() {
     inode file $hourly 740 &&
     inode file $daily 740 &&
     tmpl obnam.conf $conf &&
-    tmpl periodic.hourly.obnam $hourly &&
-    tmpl periodic.daily.obnam $daily &&
+    tmpl cron.hourly.obnam $hourly &&
+    tmpl cron.daily.obnam $daily &&
     tmpl logrotate.d.obnam /etc/logrotate.d/obnam
 }
