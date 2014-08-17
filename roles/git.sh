@@ -1,7 +1,3 @@
-_has_id() {
-  cut -d: -f1 /etc/$1 | grep -q "^$2\$"
-}
-
 _git_stamp() {
   GIT_DIR=$repo git log -1 --format=%ai 2>/dev/null | awk '{ print $1, $2 }'
 }
