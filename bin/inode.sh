@@ -4,7 +4,8 @@ inode() {
   shift 2
 
   [ $type = link ] && {
-    local target=$1
+    target=$node
+    node=$1
     shift
   }
 
@@ -25,8 +26,8 @@ inode() {
         progress wrap "$type create" $node "touch $node" || return 1
       ;;
     link)
-      [ -L $target ] || \
-        progress wrap "$type create" $node "ln -s $node $target" || return 1
+      [ -L $node ] || \
+        progress wrap "$type create" $node "ln -s $target $node" || return 1
       ;;
   esac
 
