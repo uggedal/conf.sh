@@ -2,7 +2,7 @@ cgit_role() {
   local md_dest=/usr/lib/cgit/filters/md.py
   local highlight_dest=/usr/lib/cgit/filters/highlight.py
 
-  pkg add cgit py-pygments py-hoedown
+  pkg add cgit python-Pygments python-hoedown
 
   file cgit.md.filter.py $md_dest
   inode file $md_dest 755
