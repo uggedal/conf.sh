@@ -1,4 +1,4 @@
 ntpd_role() {
-  daemon enable ntpd &&
-    daemon start ntpd
+  pkg add ntp &&
+    daemon enable ntpd
 }
