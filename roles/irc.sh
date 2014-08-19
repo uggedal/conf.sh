@@ -1,3 +1,3 @@
 irc_role() {
-  pkg add irssi-perl
+  pkg add weechat
 }
