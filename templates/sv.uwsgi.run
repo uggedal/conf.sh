@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# TODO: use shell vars to handle spaces from mustache template
+#       or use init configs in /etc/uwsgi.d
+# TODO: should master be used?
+
+[ -d /run/uwsgi ] || mkdir -p /run/uwsgi
+chown nginx:nginx /run/uwsgi
+
+ARGS=
+{{#_uwsgi_chdir}}
+ARGS="$ARGS --chdir={{_uwsgi_chdir}}"
+{{/_uwsgi_chdir}}
+{{#_uwsgi_django}}
+ARGS="$ARGS --env=DJANGO_SETTINGS_MODULE={{_uwsgi_module}}.settings"
+{{/_uwsgi_django}}
+{{^_uwsgi_django}}
+ARGS="$ARGS --module={{_uwsgi_module}}"
+{{/_uwsgi_django}}
+{{#_uwsgi_idle}}
+ARGS="$ARGS --idle=60"
+{{/_uwsgi_idle}}
+
+exec chpst -u nginx:nginx uwsgi \
+  --master \
+  --die-on-term \
+  --socket=/run/uwsgi/{{_uwsgi_fqdn}}.sock \
+  --chmod-socket=660 \
+  --logto=/var/log/uwsgi/{{_uwsgi_fqdn}}.log \
+  --disable-logging \
+  --processes={{_uwsgi_processes}} \
+  --auto-procname \
+  --procname-prefix-spaced='{{_uwsgi_fqdn}}:' \
+  $ARGS
