@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# TODO: use shell vars to handle spaces from mustache template
-#       or use init configs in /etc/uwsgi.d
-# TODO: should master be used?
-
 [ -d /run/uwsgi ] || mkdir -p /run/uwsgi
 chown nginx:nginx /run/uwsgi
 
