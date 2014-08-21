@@ -1,5 +1,5 @@
 webgen_role() {
-  pkg add py-pygments \
-    py-hoedown \
+  pkg add python-Pygments \
+    python-hoedown \
     rsync
 }
