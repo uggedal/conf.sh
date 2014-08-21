@@ -1,0 +1,15 @@
+#!/bin/sh
+
+PKGNAME="$1"
+VERSION="$2"
+
+cat <<EOF > /boot/grub/menu.lst
+timeout 0
+default 0
+hiddenmenu
+
+title Void Linux
+root (hd0)
+kernel /boot/vmlinuz-$VERSION root=/dev/xvda console=hvc0 quiet
+initrd /boot/initramfs-$VERSION.img
+EOF
