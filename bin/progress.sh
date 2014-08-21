@@ -2,16 +2,16 @@ _progress_start() {
   local action="$1"
   local object="$2"
 
-  printf '%-16s \e[33m%s\e[0m ' "$action" "$object"
+  printf '%-16s \033[33m%s\033[0m ' "$action" "$object"
 }
 
 _progress_finish() {
   if [ $1 -eq 0 ]; then
-    printf '\e[32m✓'
+    printf '\033[32m✓'
   else
-    printf '\e[31m✗'
+    printf '\033[31m✗'
   fi
-  printf '\e[0m\n'
+  printf '\033[0m\n'
 }
 
 _progress_result() {
