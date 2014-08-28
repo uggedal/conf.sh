@@ -20,6 +20,7 @@ parse() {
 
   [ -n "$host" ] || die 'no host in %s\n' $env
   [ -n "$roles" ] || die 'no roles in %s\n' $env
+  [ -n "$port" ] || port=22
 
   [ $# -ne 2 ] || roles="$2"
 }
@@ -52,13 +53,13 @@ sync() {
   (
     cd ..
     tar cpf - $repo/$run $repo/templates $repo/files \
-      | ssh $user@$host "tar xpf - -C $(dirname $dest)"
+      | ssh -p $port $user@$host "tar xpf - -C $(dirname $dest)"
   )
 }
 
 execrun() {
   if remote; then
-    ssh $user@$host $dest/$run
+    ssh -p $port $user@$host $dest/$run
   else
     ./$run
   fi
