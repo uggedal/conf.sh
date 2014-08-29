@@ -49,6 +49,10 @@ EOF
 }
 
 sync() {
+  local files=$(dirname $env)/files
+  rm -rf $repo/files
+  [ -d $files ] && cp -r $files .
+
   remote || return 0
   (
     cd ..
