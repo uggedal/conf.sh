@@ -9,5 +9,6 @@ wm_role() {
     dzen2 \
     dejavu-fonts-ttf \
     rxvt-unicode \
-    keychain
+    keychain \
+    firefox
 }
