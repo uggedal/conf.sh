@@ -8,5 +8,6 @@ wm_role() {
     herbstluftwm \
     dzen2 \
     dejavu-fonts-ttf \
-    rxvt-unicode
+    rxvt-unicode \
+    keychain
 }
