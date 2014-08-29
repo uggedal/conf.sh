@@ -12,5 +12,6 @@ wm_role() {
     keychain \
     firefox \
     mpv \
+    libva-intel-driver \
     rtorrent
 }
