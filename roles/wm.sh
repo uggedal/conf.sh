@@ -10,5 +10,6 @@ wm_role() {
     dejavu-fonts-ttf \
     rxvt-unicode \
     keychain \
-    firefox
+    firefox \
+    mpv
 }
