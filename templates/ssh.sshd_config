@@ -136,3 +136,6 @@ AllowUsers {{_sshd_allow_users}}
 
 Match Address {{_sshd_allow_root_from}}
   AllowUsers root {{_sshd_allow_users}}
+
+Match Address 127.0.0.1
+  AllowUsers root {{_sshd_allow_users}}
