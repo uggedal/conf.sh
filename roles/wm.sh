@@ -12,5 +12,6 @@ wm_role() {
     keychain \
     firefox \
     rtorrent \
-    sxiv-git
+    sxiv-git \
+    mupdf
 }
