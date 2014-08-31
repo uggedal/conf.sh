@@ -14,5 +14,6 @@ wm_role() {
     rtorrent \
     sxiv-git \
     mupdf \
-    qemu
+    qemu \
+    p7zip
 }
