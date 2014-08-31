@@ -13,5 +13,6 @@ wm_role() {
     firefox \
     rtorrent \
     sxiv-git \
-    mupdf
+    mupdf \
+    qemu
 }
