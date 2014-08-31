@@ -11,5 +11,6 @@ wm_role() {
     rxvt-unicode \
     keychain \
     firefox \
-    rtorrent
+    rtorrent \
+    sxiv-git
 }
