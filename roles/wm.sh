@@ -7,6 +7,7 @@ wm_role() {
     autocutsel \
     herbstluftwm \
     dzen2 \
+    dmenu \
     dejavu-fonts-ttf \
     rxvt-unicode \
     keychain \
