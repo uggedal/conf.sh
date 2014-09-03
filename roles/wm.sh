@@ -17,6 +17,7 @@ wm_role() {
     mupdf \
     dbus \
     qemu \
+    usbutils \
     p7zip \
     openconnect
 
