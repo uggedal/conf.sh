@@ -15,6 +15,9 @@ wm_role() {
     rtorrent \
     sxiv-git \
     mupdf \
+    dbus \
     qemu \
     p7zip
+
+  daemon enable dbus
 }
