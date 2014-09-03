@@ -17,7 +17,8 @@ wm_role() {
     mupdf \
     dbus \
     qemu \
-    p7zip
+    p7zip \
+    openconnect
 
   daemon enable dbus
 }
