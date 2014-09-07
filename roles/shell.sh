@@ -1,3 +1,4 @@
 shell_role() {
-  tmpl profile.d.bashrc.sh /etc/profile.d/bashrc.sh
+  tmpl root.bash_profile /root/.bash_profile &&
+    tmpl root.bashrc /root/.bashrc
 }
