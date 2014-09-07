@@ -1,0 +1,3 @@
+#!/bin/sh
+tty=${PWD##*-}
+exec setsid agetty -a {{_user_name}} $([ $tty = tty1 ] && echo --noclear) $tty linux

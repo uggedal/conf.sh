@@ -4,4 +4,7 @@ user_role() {
     usr groups $_user_name $_user_groups &&
     usr sshkey $_user_name "$_user_sshkey" &&
     usr dotfiles $_user_name
+
+  [ -z "$_user_autologin" ] |
+    tmpl sv.agetty-tty1.run /etc/sv/agetty-tty1/run
 }
