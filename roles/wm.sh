@@ -18,7 +18,7 @@ wm_role() {
     dbus \
     qemu \
     usbutils \
-    p7zip \
+    unrar \
     openconnect
 
   daemon enable dbus
