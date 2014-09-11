@@ -12,7 +12,6 @@ wm_role() {
     dejavu-fonts-ttf \
     rxvt-unicode \
     keychain \
-    firefox \
     sxiv-git \
     mupdf
 
