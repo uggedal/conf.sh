@@ -15,9 +15,6 @@ wm_role() {
     rtorrent \
     sxiv-git \
     mupdf \
-    dbus \
-    qemu \
-    usbutils \
     unrar \
     openconnect
 
