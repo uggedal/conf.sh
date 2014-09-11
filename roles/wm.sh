@@ -17,7 +17,6 @@ wm_role() {
     mupdf \
     dbus \
     unrar \
-    openconnect
 
   daemon enable dbus
 }
