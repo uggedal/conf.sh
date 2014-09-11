@@ -1,5 +1,6 @@
 wm_role() {
-  pkg add xset \
+  pkg add dbus \
+    xset \
     xrdb \
     setxkbmap \
     xsetroot \
@@ -13,8 +14,7 @@ wm_role() {
     keychain \
     firefox \
     sxiv-git \
-    mupdf \
-    dbus
+    mupdf
 
   daemon enable dbus
 }
