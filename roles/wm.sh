@@ -11,9 +11,7 @@ wm_role() {
     dmenu \
     dejavu-fonts-ttf \
     rxvt-unicode \
-    keychain \
-    sxiv-git \
-    mupdf
+    keychain
 
   daemon enable dbus
 }
