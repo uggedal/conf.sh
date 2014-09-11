@@ -1,5 +1,7 @@
 video_role() {
   pkg add mpv \
     $_video_driver \
-    youtube-dl
+    youtube-dl \
+    rtorrent \
+    unrar
 }

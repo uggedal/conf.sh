@@ -12,11 +12,9 @@ wm_role() {
     rxvt-unicode \
     keychain \
     firefox \
-    rtorrent \
     sxiv-git \
     mupdf \
-    dbus \
-    unrar \
+    dbus
 
   daemon enable dbus
 }
