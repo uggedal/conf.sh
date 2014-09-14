@@ -1,3 +1,4 @@
 picture_role() {
-  pkg add sxiv-git
+  pkg add sxiv-git \
+    simple-mtpfs
 }
