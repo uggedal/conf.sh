@@ -11,7 +11,8 @@ wm_role() {
     dmenu \
     dejavu-fonts-ttf \
     rxvt-unicode \
-    keychain
+    keychain \
+    xrandr
 
   daemon enable dbus
 }
