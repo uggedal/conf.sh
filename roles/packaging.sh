@@ -1,3 +1,5 @@
 packaging_role() {
-  pkg add strace gdb
+  pkg add xtools \
+    strace \
+    gdb
 }
