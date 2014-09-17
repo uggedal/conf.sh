@@ -23,6 +23,7 @@ _nginx_sites() {
 nginx_role() {
   pkg add nginx &&
     tmpl nginx.conf /etc/nginx/nginx.conf nginx &&
+    tmpl nginx.conf.d.default /etc/nginx/conf.d/default.conf nginx &&
     tmpl logrotate.d.nginx /etc/logrotate.d/nginx &&
     daemon enable nginx &&
     inode dir /etc/nginx/conf.d 755 &&
