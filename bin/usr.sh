@@ -79,7 +79,7 @@ _usr_dotfiles() {
 
   inode dir $dir/.git 755 $user &&
     inode file $dir/.git/config 644 $user &&
-    tmpl dotfiles_config $dir/.git/config
+    tmpl -s /home/_git/config -d $dir/.git/config
 }
 
 usr() {

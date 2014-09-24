@@ -16,15 +16,15 @@ _nginx_sites() {
 
     [ -n "$_nginx_root" ] || _nginx_root=/srv/http/$_nginx_fqdn
 
-    tmpl nginx.conf.d $conf nginx
+    tmpl -s /etc/nginx/conf.d/site.conf -d $conf -h nginx
   done
 }
 
 nginx_role() {
   pkg add nginx &&
-    tmpl nginx.conf /etc/nginx/nginx.conf nginx &&
-    tmpl nginx.conf.d.default /etc/nginx/conf.d/default.conf nginx &&
-    tmpl logrotate.d.nginx /etc/logrotate.d/nginx &&
+    tmpl -s /etc/nginx/nginx.conf -h nginx &&
+    tmpl -s /etc/nginx/conf.d/default.conf -h nginx &&
+    tmpl -s /etc/logrotate.d/nginx &&
     daemon enable nginx &&
     inode dir /etc/nginx/conf.d 755 &&
     _nginx_sites

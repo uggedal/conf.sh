@@ -6,5 +6,5 @@ user_role() {
     usr dotfiles $_user_name
 
   [ -z "$_user_autologin" ] |
-    tmpl sv.agetty-tty1.run /etc/sv/agetty-tty1/run
+    tmpl -s /etc/sv/agetty-tty1/run
 }

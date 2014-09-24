@@ -3,6 +3,6 @@ redis_handler() {
   local state=$2
   local file=$3
 
-  [ "$file" = /etc/redis.conf ] && daemon restart redis
+  [ "$file" = /etc/redis/redis.conf ] && daemon restart redis
   [ "$file" = /etc/sysctl.d/redis.conf ] && sysctl -q -p $file
 }

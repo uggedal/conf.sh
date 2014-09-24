@@ -2,5 +2,5 @@ xen_role() {
   local post=/etc/kernel.d/post-install/20-xen-grub
 
   inode file $post 755 &&
-    tmpl kernel.d.post-install.20-xen-grub $post
+    tmpl -s $post
 }

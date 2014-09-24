@@ -1,4 +1,4 @@
 network_role() {
-  tmpl hostname /etc/hostname &&
+  tmpl -s /etc/hostname &&
     daemon enable dhcpcd
 }

@@ -8,8 +8,8 @@ obnam_role() {
     inode file $conf 640 &&
     inode file $hourly 740 &&
     inode file $daily 740 &&
-    tmpl obnam.conf $conf &&
-    tmpl cron.hourly.obnam $hourly &&
-    tmpl cron.daily.obnam $daily &&
-    tmpl logrotate.d.obnam /etc/logrotate.d/obnam
+    tmpl -s $conf &&
+    tmpl -s $hourly &&
+    tmpl -s $daily &&
+    tmpl -s /etc/logrotate.d/obnam
 }

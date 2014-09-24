@@ -1,9 +1,9 @@
 redis_role() {
   pkg add redis &&
     inode dir /var/log/redis 750 redis &&
-    tmpl logrotate.d.redis /etc/logrotate.d/redis &&
-    tmpl redis.redis.conf /etc/redis/redis.conf redis &&
+    tmpl -s /etc/logrotate.d/redis &&
+    tmpl -s /etc/redis/redis.conf -h redis &&
     inode dir /etc/sysctl.d 755 &&
-    tmpl sysctl.d.redis.conf /etc/sysctl.d/redis.conf redis &&
+    tmpl -s /etc/sysctl.d/redis.conf -h redis &&
     daemon enable redis
 }

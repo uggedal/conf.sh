@@ -1,4 +1,4 @@
 nftables_role() {
   pkg add nftables &&
-    tmpl nftables.conf /etc/nftables.conf nftables
+    tmpl -s /etc/nftables.conf -h nftables
 }

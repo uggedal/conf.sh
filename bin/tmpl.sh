@@ -1,7 +1,23 @@
 tmpl() {
-  local src=$(dirname $0)/templates/$1
-  local dest=$2
-  local handler=$3
+  local opt src dest handler
+
+  while getopts "s:d:h:" opt; do
+    case $opt in
+      s)
+        src=$OPTARG
+        ;;
+      d)
+        dest=$OPTARG
+        ;;
+      h)
+        handler=$OPTARG
+        ;;
+    esac
+  done
+
+  [ -n "$src" ] || return 1
+  [ -n "$dest" ] || dest=$src
+
   local tmp=$(mktemp)
   local diff rc
 
@@ -62,7 +78,7 @@ function parse(line) {
 }
 '
 
-  awk "$tmpl_awk" $src > $tmp
+  awk "$tmpl_awk" $(dirname $0)/templates$src > $tmp
 
   [ -f $dest ] || touch $dest
 

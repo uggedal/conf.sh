@@ -13,7 +13,7 @@ _uwsgi_services() {
     done
 
     inode file /etc/sv/$service/run 755 &&
-      tmpl sv.uwsgi.run /etc/sv/$service/run uwsgi &&
+      tmpl -s /etc/sv/uwsgi/run -d /etc/sv/$service/run -h uwsgi &&
       inode link /run/runit/supervise.$service /etc/sv/$service/supervise &&
       daemon enable $service
   done
@@ -23,6 +23,6 @@ _uwsgi_services() {
 uwsgi_role() {
   pkg add uwsgi &&
     inode dir /var/log/uwsgi 755 nginx &&
-    tmpl logrotate.d.uwsgi /etc/logrotate.d/uwsgi &&
+    tmpl -s /etc/logrotate.d/uwsgi &&
     _uwsgi_services
 }

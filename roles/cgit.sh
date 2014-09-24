@@ -12,5 +12,5 @@ cgit_role() {
 
   file git.uggedal.com.png /usr/share/webapps/cgit/git.uggedal.com.png
 
-  tmpl cgitrc /etc/cgitrc
+  tmpl -s /etc/cgitrc
 }

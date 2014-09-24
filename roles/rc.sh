@@ -1,4 +1,4 @@
 rc_role() {
-  tmpl rc.conf /etc/rc.conf &&
-    tmpl rc.local /etc/rc.local
+  tmpl -s /etc/rc.conf &&
+    tmpl -s /etc/rc.local
 }
