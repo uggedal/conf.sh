@@ -3,7 +3,7 @@ _has_id() {
 }
 
 _usr_add() {
-  local user group
+  local opt user group
 
   local gcmd=groupadd
   local ucmd=useradd
