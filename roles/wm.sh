@@ -6,7 +6,8 @@ wm_role() {
     xsetroot \
     unclutter \
     autocutsel \
-    herbstluftwm \
+    bspwm \
+    sxhkd \
     bar-git \
     dmenu \
     dejavu-fonts-ttf \
