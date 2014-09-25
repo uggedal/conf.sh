@@ -7,7 +7,7 @@ wm_role() {
     unclutter \
     autocutsel \
     herbstluftwm \
-    dzen2 \
+    bar-git \
     dmenu \
     dejavu-fonts-ttf \
     rxvt-unicode \
