@@ -10,6 +10,7 @@ wm_role() {
     sxhkd \
     bar-git \
     dmenu \
+    terminus-font \
     dejavu-fonts-ttf \
     rxvt-unicode \
     keychain \
