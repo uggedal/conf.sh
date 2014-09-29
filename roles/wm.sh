@@ -9,6 +9,7 @@ wm_role() {
     bspwm \
     sxhkd \
     bar-git \
+    xtitle \
     dmenu \
     terminus-font \
     dejavu-fonts-ttf \
