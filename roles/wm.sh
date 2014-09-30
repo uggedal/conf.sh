@@ -15,7 +15,8 @@ wm_role() {
     dejavu-fonts-ttf \
     rxvt-unicode \
     keychain \
-    xrandr
+    xrandr \
+    physlock
 
   daemon enable dbus
 }
