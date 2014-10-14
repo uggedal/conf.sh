@@ -1,4 +1,5 @@
 web_role() {
-  pkg add firefox \
+  pkg add vimb \
+    tabbed \
     mupdf
 }
