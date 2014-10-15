@@ -1,4 +1,5 @@
 web_role() {
   pkg add vimb \
-    mupdf
+    mupdf \
+    pass
 }
