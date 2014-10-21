@@ -14,7 +14,6 @@ wm_role() {
     terminus-font \
     dejavu-fonts-ttf \
     rxvt-unicode \
-    keychain \
     xrandr \
     physlock
 
