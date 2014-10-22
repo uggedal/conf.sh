@@ -1,4 +1,5 @@
 syslog_role() {
-  pkg add rsyslog &&
-    daemon enable rsyslogd
+  pkg add socklog-void &&
+    daemon enable nanoklogd &&
+    daemon enable socklog-unix
 }
