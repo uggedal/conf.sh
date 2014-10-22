@@ -1,0 +1,11 @@
+#!/bin/sh
+
+tmp=$(mktemp)
+
+printf '%s %s %s\n\n' 127.0.0.1 localhost.localdomain localhost > $tmp
+
+curl -s http://someonewhocares.org/hosts/zero/hosts >> $tmp
+
+[ "$(wc -l $tmp | awk '{ print $1 }' )" -gt 10 ] && cp $tmp /etc/hosts
+
+rm $tmp
