@@ -3,6 +3,5 @@ video_role() {
     ffmpeg \
     $_video_driver \
     youtube-dl \
-    rtorrent \
     unrar
 }
