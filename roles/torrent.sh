@@ -4,6 +4,6 @@ torrent_role() {
   pkg add transmission \
     transmission-remote-cli &&
     inode file $conf 600 transmission &&
-    tmpl -s $conf &&
+    tmpl -s $conf -h transmission &&
     daemon enable transmission-daemon
 }
