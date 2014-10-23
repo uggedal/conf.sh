@@ -1,4 +1,4 @@
-torrent_role() {
+transmission_role() {
   local conf=/var/lib/transmission/.config/transmission-daemon/settings.json
 
   pkg add transmission \
