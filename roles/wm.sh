@@ -6,10 +6,8 @@ wm_role() {
     xsetroot \
     unclutter \
     autocutsel \
-    bspwm \
-    sxhkd \
-    bar-git \
-    xtitle \
+    i3 \
+    i3status \
     dmenu \
     terminus-font \
     dejavu-fonts-ttf \
