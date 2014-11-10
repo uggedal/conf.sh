@@ -10,6 +10,6 @@ hiddenmenu
 
 title Void Linux
 root (hd0)
-kernel /boot/vmlinuz-$VERSION root=/dev/xvda console=hvc0 quiet
+kernel /boot/vmlinuz-$VERSION root=/dev/xvda console=hvc0 ipv6.disable=1 quiet
 initrd /boot/initramfs-$VERSION.img
 EOF
