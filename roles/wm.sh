@@ -7,7 +7,7 @@ wm_role() {
     unclutter \
     autocutsel \
     i3 \
-    i3status \
+    i3blocks \
     dmenu \
     terminus-font \
     dejavu-fonts-ttf \
