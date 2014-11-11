@@ -2,7 +2,7 @@ conf
 ====
 
 Zero dependency configuration management for
-[Void Linux][alpine] machines in POSIX shell.
+[Void Linux][void] machines in POSIX shell.
 
 Usage
 -----
@@ -34,6 +34,6 @@ License
 
 MIT
 
-[alpine]: http://voidlinux.eu/
+[void]: http://voidlinux.eu/
 [posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
 [cdist]: http://www.nico.schottelius.org/software/cdist/
