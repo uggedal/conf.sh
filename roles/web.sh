@@ -3,7 +3,8 @@ web_role() {
 
   pkg add vimb \
     mupdf \
-    pass
+    pass \
+    pockyt
 
   inode file $weekly 740 &&
     tmpl -s $weekly
