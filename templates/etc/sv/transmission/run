@@ -1,5 +1,0 @@
-#!/bin/sh
-
-iw {{_wifi_interface}} link | fgrep -q 'SSID: {{_transmission_allowed_ssid}}' || exit 1
-
-exec chpst -u transmission:transmission transmission-daemon -f --log-error
