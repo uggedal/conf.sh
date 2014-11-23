@@ -1,1 +1,1 @@
-0 6 * * * void-updates -p {{_voidupdates_procs}} -r {{_voidupdates_repo}} -s {{_voidupdates_src}} -o {{_voidupdates_dest}}
+0 6 * * *	void-updates -p {{_voidupdates_procs}} -r '{{_voidupdates_repo}}' -s {{_voidupdates_src}} -o {{_voidupdates_dest}}
