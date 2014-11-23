@@ -6,7 +6,7 @@ _nginx_sites() {
 
     conf=/etc/nginx/conf.d/${fqdn}.conf
 
-    inode dir /srv/http/${fqdn} 755 nginx || return 1
+    inode dir /srv/http/${fqdn} 775 nginx || return 1
     inode file $conf 644 || return 1
 
     for v in fqdn aliases root upstream static_prefix \
