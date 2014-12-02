@@ -11,6 +11,12 @@ git_role() {
 
   pkg add git
 
+  inode dir /etc/sv/git-daemon &&
+    inode file /etc/sv/git-daemon/run 755 &&
+    tmpl -s /etc/sv/git-daemon/run &&
+    inode link /run/runit/supervise.git-daemon /etc/sv/git-daemon/supervise &&
+    daemon enable git-daemon
+
   usr add -S -u git -g git -h $root -s /sbin/nologin
 
   for i in $(seq -w 1 99); do
@@ -29,6 +35,8 @@ git_role() {
 
     [ -f $repo/HEAD ] ||
       progress wrap "git $visibility" $name "$git_init $repo"
+
+    [ "$visibility" = public ] && inode file $repo/git-daemon-export-ok 640 git
 
     printf '%s\n' "$description" > $repo/description
 
