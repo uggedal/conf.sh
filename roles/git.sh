@@ -1,4 +1,6 @@
 _git_stamp() {
+  local repo=$1
+
   GIT_DIR=$repo git log -1 --format=%ai 2>/dev/null | awk '{ print $1, $2 }'
 }
 
@@ -30,7 +32,7 @@ git_role() {
 
     printf '%s\n' "$description" > $repo/description
 
-    stamp="$(_git_stamp)"
+    stamp="$(_git_stamp $repo)"
     [ -z "$stamp" ] || touch -d "$stamp" $repo/refs/heads/master
   done
 }
