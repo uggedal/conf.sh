@@ -32,7 +32,7 @@ Related
 License
 -------
 
-MIT
+ISC
 
 [void]: http://voidlinux.eu/
 [posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
