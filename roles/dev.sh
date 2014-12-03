@@ -1,7 +1,6 @@
 dev_role() {
   pkg add bash-completion \
-    dvtm \
-    abduco \
+    tmux \
     vim \
     less \
     curl \
