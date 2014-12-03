@@ -1,9 +1,9 @@
-_has_id() {
-  cut -d: -f1 /etc/$1 | grep -q "^$2\$"
+_usr_field() {
+  grep "^$3:" /etc/$1 | cut -d: -f$2
 }
 
 _usr_add() {
-  local opt user group
+  local opt user group shell
 
   local gcmd=groupadd
   local ucmd=useradd
@@ -18,6 +18,7 @@ _usr_add() {
         ucmd="$ucmd -g $OPTARG"
         ;;
       s)
+        shell=$OPTARG
         ucmd="$ucmd -s $OPTARG"
         ;;
       h)
@@ -32,11 +33,14 @@ _usr_add() {
 
   [ -n "$user" -a -n "$group" ] || return 1
 
-  _has_id group $group ||
+  _usr_field group 1 $group | grep -q "^$group\$" ||
     progress wrap 'usr group' $user "$gcmd $group"
 
-  _has_id passwd $user ||
+  _usr_field passwd 1 $user | grep -q "^$user\$" ||
     progress wrap 'usr add' $user "$ucmd $user"
+
+  [ "$(_usr_field passwd 7 $user)" = "$shell" ] ||
+    progress wrap 'usr shell' "$user $shell" "chsh -s $shell $user"
 }
 
 _usr_groups() {
