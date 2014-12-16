@@ -1,6 +1,5 @@
 dev_role() {
-  pkg add bash-completion \
-    tmux \
+  pkg add tmux \
     vim \
     less \
     curl \
