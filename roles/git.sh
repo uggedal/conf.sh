@@ -5,7 +5,7 @@ _git_stamp() {
 }
 
 git_role() {
-  local name repo visibility section description stamp
+  local i name repo visibility section description stamp
   local root=/var/lib/git
   local git_init='sudo -u git git init -q --bare --shared=group'
 
