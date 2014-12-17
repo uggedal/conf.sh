@@ -1,5 +1,5 @@
 _nginx_sites() {
-  local fqdn conf
+  local i fqdn conf
   for i in $(seq 1 9); do
     fqdn=$(var get nginx $i fqdn)
     [ -z "$fqdn" ] && return
