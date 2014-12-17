@@ -1,5 +1,5 @@
 _uwsgi_services() {
-  local fqdn service
+  local i fqdn service
   for i in $(seq 1 9); do
     fqdn=$(var get uwsgi $i fqdn)
     [ -z "$fqdn" ] && return
