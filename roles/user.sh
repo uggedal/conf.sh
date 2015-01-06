@@ -1,5 +1,5 @@
 user_role() {
-  local preserve_d=/etc/xbps/preserve.d
+  local xbps_d=/etc/xbps.d
 
   pkg add zsh \
     zsh-syntax-highlighting \
@@ -10,8 +10,8 @@ user_role() {
     usr dotfiles $_user_name
 
   [ -z "$_user_autologin" ] || {
-    inode dir $preserve_d 755 &&
-      tmpl -s $preserve_d/runit-void.conf &&
+    inode dir $xbps_d 755 &&
+      tmpl -s $xbps_d/runit-void.conf &&
       tmpl -s /etc/sv/agetty-tty1/run
   }
 }
