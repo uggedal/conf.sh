@@ -1,4 +1,4 @@
 ntpd_role() {
-  pkg add ntp &&
-    daemon enable ntpd
+  pkg add busybox-ntpd &&
+    daemon enable busybox-ntpd
 }
