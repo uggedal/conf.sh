@@ -8,5 +8,6 @@ dev_role() {
     htop \
     lsof \
     tree \
-    ncdu
+    ncdu \
+    cloc
 }
