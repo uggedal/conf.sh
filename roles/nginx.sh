@@ -10,7 +10,8 @@ _nginx_sites() {
     inode file $conf 644 || return 1
 
     for v in fqdn aliases root upstream static_prefix \
-             cgi_script cgi_pass subdomain_redirect autoindex; do
+             cgi_script cgi_pass uwsgi php \
+             subdomain_redirect autoindex; do
       var export nginx $i $v
     done
 
