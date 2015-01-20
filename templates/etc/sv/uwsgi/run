@@ -1,7 +1,9 @@
 #!/bin/sh
 
+USER={{_uwsgi_user}}:{{_uwsgi_user}}
+
 [ -d /run/uwsgi ] || mkdir -p /run/uwsgi
-chown nginx:nginx /run/uwsgi
+chown $USER /run/uwsgi
 
 ARGS=
 {{#_uwsgi_chdir}}
@@ -17,7 +19,7 @@ ARGS="$ARGS --module={{_uwsgi_module}}"
 ARGS="$ARGS --idle=60"
 {{/_uwsgi_idle}}
 
-exec chpst -u nginx:nginx uwsgi \
+exec chpst -u $USER uwsgi \
   --master \
   --die-on-term \
   --socket=/run/uwsgi/{{_uwsgi_fqdn}}.sock \
