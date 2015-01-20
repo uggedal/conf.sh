@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/spawn-fcgi -n -u nginx -s /run/spawn-fcgi.sock -- /usr/sbin/fcgiwrap
+exec /usr/bin/spawn-fcgi -n -u {{_cgi_user}} -s /run/spawn-fcgi.sock -- /usr/sbin/fcgiwrap
