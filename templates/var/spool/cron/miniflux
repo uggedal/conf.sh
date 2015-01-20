@@ -1,0 +1,1 @@
+15 * * * *	cd /usr/share/webapps/miniflux && php cronjob.php >/dev/null 2>&1
