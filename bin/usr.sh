@@ -56,7 +56,7 @@ _usr_groups() {
 
   local csv=$(printf "$groups" | tr ' ' ',')
 
-  [ "$ok" -eq 1 ] || progress wrap 'usr groups' $user "usermod -G $csv $user"
+  [ "$ok" -eq 1 ] || progress wrap 'usr groups' $user "usermod -aG $csv $user"
 }
 
 _usr_sshkey() {
