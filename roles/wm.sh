@@ -6,8 +6,8 @@ wm_role() {
     xsetroot \
     unclutter \
     autocutsel \
-    i3 \
-    i3blocks \
+    herbstluftwm \
+    lemonbar \
     dmenu \
     terminus-font \
     dejavu-fonts-ttf \
