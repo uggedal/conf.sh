@@ -3,7 +3,7 @@ transmission_role() {
 
   pkg add transmission \
     transmission-remote-cli &&
-    inode dir $(dirname $conf) 600 transmission &&
+    inode dir $(dirname $conf) 700 transmission &&
     inode file $conf 600 transmission &&
     tmpl -s $conf -h transmission &&
     daemon enable transmission-daemon
