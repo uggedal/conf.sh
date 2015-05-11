@@ -1,7 +1,7 @@
 web_role() {
   local weekly=/etc/cron.weekly/adblock
 
-  pkg add vimb \
+  pkg add firefox \
     mupdf \
     pass \
     pockyt
