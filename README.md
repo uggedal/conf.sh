@@ -2,26 +2,22 @@ conf
 ====
 
 Zero dependency configuration management for
-[Void Linux][void] machines in POSIX shell.
+Void Linux machines in POSIX shell.
 
 Usage
 -----
 
-First you need one or more env files providing at least the `host` and
-`roles` of a machine:
+First you need one or more env files providing at least the host and
+roles of a machine:
 
-```sh
-cat <<EOF > myhost.sh
-host=192.168.1.125
-roles='ssh dns http'
-EOF
-```
+    cat <<EOF > myhost.sh
+    host=192.168.1.125
+    roles='ssh dns http'
+    EOF
 
 Then you push your configuration with:
 
-```sh
-./push myhost.sh
-```
+    ./push myhost.sh
 
 Related
 -------
@@ -33,7 +29,3 @@ License
 -------
 
 ISC
-
-[void]: http://voidlinux.eu/
-[posix_cm]: http://www.webprojekty.cz/ccx/wobsite/article/posix_cm.html
-[cdist]: http://www.nico.schottelius.org/software/cdist/
