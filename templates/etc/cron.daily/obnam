@@ -1,3 +1,0 @@
-#!/bin/sh
-
-obnam forget --quiet --keep '{{_obnam_retention}}'

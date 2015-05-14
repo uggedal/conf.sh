@@ -1,4 +1,0 @@
-#!/bin/sh
-
-exec chpst -u nobody:nogroup \
-  /usr/libexec/git-core/git-daemon --syslog --base-path=/var/lib/git/public

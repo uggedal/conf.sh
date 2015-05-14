@@ -30,15 +30,18 @@ validate() {
 }
 
 parse() {
-  [ $# -eq 1 -o $# -eq 2 ] || die '%s: <env> [roles]\n' $self
+  [ $# -eq 2 -o $# -eq 3 ] || die '%s: <rules> <env> [roles]\n' $self
 
-  env=$(readlink -f $1)
+  rules=$(readlink -f $1)
+  [ -d $rules ] || die 'no rules in %s\n' $rules
+
+  env=$(readlink -f $2)
   . $env
 
   validate host system roles
   [ -n "$port" ] || port=22
 
-  [ $# -ne 2 ] || roles="$2"
+  [ $# -ne 3 ] || roles="$3"
 }
 
 remote() {
@@ -58,16 +61,18 @@ role() {
 }
 EOF
 
-  cat bin/*.sh roles/*.sh handlers/*.sh >> $run
+  cat bin/*.sh $rules/roles/*.sh $rules/handlers/*.sh >> $run
 
   printf 'role %s\n' $roles >> $run
   chmod 700 $run
 }
 
 sync() {
-  local files=$(dirname $env)/files
-  rm -rf $repo/files
-  [ -d $files ] && cp -r $files .
+  local d
+  for d in $rules/templates $(dirname $env)/files; do
+    rm -rf $(basename $d)
+    [ -d $d ] && cp -r $d .
+  done
 
   remote || return 0
   (
