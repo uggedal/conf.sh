@@ -21,7 +21,7 @@ A directory layout like the following is expected:
     env/             # private environment variables
         files/       # private files
 
-First you need a env files providing at least the host, system and
+First you need an env file providing at least the host, system and
 roles of a machine:
 
     cat <<EOF > ../env/myhost.sh
