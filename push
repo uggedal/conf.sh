@@ -6,6 +6,7 @@ user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $self)))
 run=run.sh
 dest=/tmp/$repo
+systems='void'
 
 die() {
   printf "$@" >&2
@@ -13,10 +14,18 @@ die() {
 }
 
 validate() {
-  local var val
+  local var val support supported
   for var; do
     eval val=\"\$$var\"
     [ -n "$val" ] || die 'no %s in %s\n' $var $env
+
+    eval supported=\"\$${var}s\"
+    if [ "$supported" ]; then
+      for support in $supported; do
+        [ "$val" != "$support" ] || continue 2
+      done
+      die '%s=%s not supported\n' $var "$val"
+    fi
   done
 }
 
@@ -26,7 +35,7 @@ parse() {
   env=$(readlink -f $1)
   . $env
 
-  validate host roles
+  validate host system roles
   [ -n "$port" ] || port=22
 
   [ $# -ne 2 ] || roles="$2"

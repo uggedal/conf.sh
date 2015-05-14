@@ -1,17 +1,22 @@
 conf
 ====
 
-Zero dependency configuration management for
-Void Linux machines in POSIX shell.
+Zero dependency configuration management in POSIX shell.
+
+Supported systems
+-----------------
+
+* void: Void Linux
 
 Usage
 -----
 
-First you need one or more env files providing at least the host and
+First you need one or more env files providing at least the host, system and
 roles of a machine:
 
     cat <<EOF > myhost.sh
     host=192.168.1.125
+    system=void
     roles='ssh dns http'
     EOF
 
@@ -23,6 +28,7 @@ A more elaborate example:
 
     cat <<EOF > mysecondhost.sh
     host=192.168.1.126
+    system=void
     port=2222
 
     roles='
