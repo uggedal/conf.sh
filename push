@@ -12,14 +12,21 @@ die() {
   exit 64
 }
 
+validate() {
+  local var val
+  for var; do
+    eval val=\"\$$var\"
+    [ -n "$val" ] || die 'no %s in %s\n' $var $env
+  done
+}
+
 parse() {
   [ $# -eq 1 -o $# -eq 2 ] || die '%s: <env> [roles]\n' $self
 
   env=$(readlink -f $1)
   . $env
 
-  [ -n "$host" ] || die 'no host in %s\n' $env
-  [ -n "$roles" ] || die 'no roles in %s\n' $env
+  validate host roles
   [ -n "$port" ] || port=22
 
   [ $# -ne 2 ] || roles="$2"
