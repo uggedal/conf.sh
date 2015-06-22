@@ -1,7 +1,7 @@
 conf
 ====
 
-Zero dependency configuration management in POSIX shell.
+Zero dependency configuration management using POSIX shell.
 
 Supported systems
 -----------------
