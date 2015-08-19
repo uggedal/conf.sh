@@ -62,7 +62,8 @@ _usr_groups() {
 _usr_sshkey() {
   local user=$1
   local key="$2"
-  local dir=/home/$user/.ssh
+  local dir
+  eval dir=~$user/.ssh
   local file=$dir/authorized_keys
   local group
 
