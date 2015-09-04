@@ -6,6 +6,7 @@ Zero dependency configuration management using POSIX shell.
 Supported systems
 -----------------
 
+* alpine: Alpine Linux
 * void: Void Linux
 
 Usage

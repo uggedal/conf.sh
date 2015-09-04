@@ -6,7 +6,7 @@ user=${user:-root}
 repo=$(basename $(dirname $(readlink -f $self)))
 run=run.sh
 dest=/tmp/$repo
-systems='void'
+systems='void alpine'
 
 die() {
   printf "$@" >&2
