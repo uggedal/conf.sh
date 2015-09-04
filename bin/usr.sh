@@ -93,6 +93,13 @@ _usr_groups() {
   [ -z "$cmd" ] || progress wrap 'usr groups' $user "${cmd}true"
 }
 
+_usr_unlock() {
+  local user=$1
+
+  ! grep "^$user:!:" /etc/shadow >/dev/null ||
+    progress wrap 'usr unlock' $user "passwd -u $user >/dev/null"
+}
+
 _usr_sshkey() {
   local user=$1
   local key="$2"
