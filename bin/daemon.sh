@@ -1,9 +1,27 @@
 _daemon_enable() {
-  inode link /etc/sv/$1 /var/service/$1
+  local name=$1
+  local runlevel=$2
+
+  [ "$runlevel" ] || runlevel=default
+
+  case $system in
+    void)
+      inode link /etc/sv/$name /var/service/$name
+      ;;
+    alpine)
+      rc-update show | grep -q "^  *$name  *|" || {
+        progress wrap 'daemon enable' $name \
+          "rc-update add $name $runlevel >/dev/null"
+        _daemon_restart $name
+      }
+      ;;
+  esac
 }
 
 _daemon_restart() {
   progress wrap 'daemon restart' $1 "sv restart /var/service/$1 >/dev/null"
+
+  progress wrap 'daemon restart' $1 "/etc/init.d/$1 -q restart 2>/dev/null"
 }
 
 daemon() {
