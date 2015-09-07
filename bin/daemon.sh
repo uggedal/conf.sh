@@ -19,9 +19,14 @@ _daemon_enable() {
 }
 
 _daemon_restart() {
-  progress wrap 'daemon restart' $1 "sv restart /var/service/$1 >/dev/null"
-
-  progress wrap 'daemon restart' $1 "/etc/init.d/$1 -q restart 2>/dev/null"
+  case $system in
+    void)
+      progress wrap 'daemon restart' $1 "sv restart /var/service/$1 >/dev/null"
+      ;;
+    alpine)
+      progress wrap 'daemon restart' $1 "/etc/init.d/$1 -q restart 2>/dev/null"
+      ;;
+  esac
 }
 
 daemon() {
