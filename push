@@ -51,6 +51,7 @@ remote() {
 mkrun() {
   cat <<EOF > $run
 #!/bin/sh
+. /etc/profile
 $(sed 's/^_/export _/' $env)
 
 role() {
