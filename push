@@ -8,6 +8,14 @@ run=run.sh
 dest=/tmp/$repo
 systems='void alpine'
 
+ssh() {
+  if command -v dbclient >/dev/null; then
+    dbclient "$@"
+  else
+    command ssh "$@"
+  fi
+}
+
 die() {
   printf "$@" >&2
   exit 64
