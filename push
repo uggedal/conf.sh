@@ -38,22 +38,25 @@ validate() {
 }
 
 parse() {
-  [ $# -eq 2 -o $# -eq 3 ] || die '%s: <rules> <env> [roles]\n' $self
+  while getopts "r:e:f:" opt; do
+    case $opt in
+      r)
+        rules=$(readlink -f $OPTARG)
+        ;;
+      e)
+        env=$(readlink -f $OPTARG)
+        ;;
+    esac
+  done
 
-  rules=$(readlink -f $1)
-  [ -d $rules ] || die 'no rules in %s\n' $rules
+  if [ -z "$rules" ] || [ -z "$env" ]; then
+    die '%s: -r <rules> -e <env>\n' $self
+  fi
 
-  env=$(readlink -f $2)
   . $env
 
   validate host system roles
-  [ -n "$port" ] || port=22
-
-  [ $# -ne 3 ] || roles="$3"
-}
-
-remote() {
-  [ $host != localhost ]
+  [ "$port" ] || port=22
 }
 
 mkrun() {
@@ -83,7 +86,6 @@ sync() {
     [ -d $d ] && cp -r $d .
   done
 
-  remote || return 0
   (
     cd ..
     tar cpf - $repo/$run $repo/templates $repo/files \
@@ -92,11 +94,7 @@ sync() {
 }
 
 execrun() {
-  if remote; then
-    ssh -p $port $user@$host $dest/$run
-  else
-    ./$run
-  fi
+  ssh -p $port $user@$host $dest/$run
 }
 
 parse "$@" && mkrun && sync && execrun
